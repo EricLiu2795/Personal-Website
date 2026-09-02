@@ -24,6 +24,9 @@ body {
 a { color: inherit; text-decoration: none; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--ember); outline-offset: 4px; }
 
+.skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 50; background: var(--ink); color: var(--paper); padding: 0.7rem 1rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.7rem; text-transform: uppercase; }
+.skip-link:focus { top: 1rem; }
+
 .eyebrow {
   color: var(--ember);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -35,6 +38,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ember); outline
 .rule { border-top: 1px solid var(--line); }
 .serif-balance { text-wrap: balance; }
 .body-copy { color: var(--muted); line-height: 1.65; }
+.snapshot-item { border-bottom: 1px solid var(--line); padding: 1.15rem 0; }
+.tag { display: inline-flex; border: 1px solid #5a5b55; padding: 0.35rem 0.55rem; color: #c5c5bc; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.experience-row { display: grid; gap: 1.5rem; padding: 2rem 0; }
+.project-feature { border-top: 1px solid #4a4b46; padding-top: 2rem; }
+.compact-project { display: grid; gap: 2rem; border-top: 1px solid #4a4b46; padding: 2rem 0; }
+.leadership-row { display: grid; gap: 1.5rem; padding: 1.75rem 0; }
 
 .nav-link { color: var(--muted); transition: color 180ms ease; }
 .nav-link:hover { color: var(--ink); }
@@ -73,6 +82,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ember); outline
   html { scroll-behavior: auto; }
   .stage-line { margin-left: 0.3rem; }
   .stage-line::before { left: 0.34rem; right: auto; top: 0.4rem; bottom: 0.4rem; border-top: 0; border-left: 1px solid var(--line); }
+}
+
+@media (min-width: 768px) {
+  .snapshot-item { border-bottom: 0; border-right: 1px solid var(--line); padding: 1.5rem 1.5rem; }
+  .snapshot-item:first-child { padding-left: 0.8rem; }
+  .snapshot-item:last-child { border-right: 0; }
+  .experience-row { grid-template-columns: 0.7fr 1.5fr 0.55fr; gap: 2rem; }
+  .compact-project { grid-template-columns: 1.15fr 0.85fr; align-items: start; gap: 3rem; }
+  .leadership-row { grid-template-columns: 0.9fr 1.25fr 0.6fr; align-items: start; gap: 2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

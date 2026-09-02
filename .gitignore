@@ -3,6 +3,7 @@ node_modules
 .next
 out
 tmp
+tmp-pages
 .frontend-design-skill
 .DS_Store
 npm-debug.log*

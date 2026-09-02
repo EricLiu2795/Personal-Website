@@ -17,3 +17,13 @@ Open `http://localhost:3000`.
 pnpm lint
 pnpm build
 ```
+
+The build is configured for a static export and writes the deployable site to `out/`.
+
+## GitHub Pages
+
+GitHub Actions deploys changes merged into `main` to:
+
+`https://ericliu2795.github.io/Personal-Website/`
+
+The Pages workflow builds with the `/Personal-Website` base path so the resume, CSS, JavaScript, and internal anchors resolve correctly under the repository subpath. Local development remains available at `http://localhost:3000`.
