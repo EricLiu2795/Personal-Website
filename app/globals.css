@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f3f0e9;
+  --ink: #1b1c1a;
+  --muted: #676861;
+  --line: #c9c5bb;
+  --ember: #b94a36;
+  --wash: #e8e4da;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ember); outline-offset: 4px; }
+
+.eyebrow {
+  color: var(--ember);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.rule { border-top: 1px solid var(--line); }
+.serif-balance { text-wrap: balance; }
+.body-copy { color: var(--muted); line-height: 1.65; }
+
+.nav-link { color: var(--muted); transition: color 180ms ease; }
+.nav-link:hover { color: var(--ink); }
+
+.project-card { transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease; }
+.project-card:hover { border-color: var(--ink); background-color: #efebe3; transform: translateY(-2px); }
+
+.arrow-link { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.82rem; font-weight: 700; }
+.arrow-link span { color: var(--ember); transition: transform 180ms ease; }
+.arrow-link:hover span { transform: translate(3px, -3px); }
+
+.grain { position: relative; isolation: isolate; }
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.11'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+.stage-line { position: relative; }
+.stage-line::before {
+  content: "";
+  position: absolute;
+  left: 0.34rem;
+  right: 0.34rem;
+  top: 0.42rem;
+  border-top: 1px solid var(--line);
+}
+.stage-dot { position: relative; z-index: 1; width: 0.78rem; height: 0.78rem; border: 1px solid var(--ink); border-radius: 9999px; background: var(--paper); }
+
+@media (max-width: 640px) {
+  html { scroll-behavior: auto; }
+  .stage-line { margin-left: 0.3rem; }
+  .stage-line::before { left: 0.34rem; right: auto; top: 0.4rem; bottom: 0.4rem; border-top: 0; border-left: 1px solid var(--line); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
