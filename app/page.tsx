@@ -58,7 +58,7 @@ export default function Home() {
       <section className="mx-auto grid max-w-[1240px] gap-10 px-5 pb-14 pt-14 sm:px-8 sm:pb-16 sm:pt-20 lg:grid-cols-[1.12fr_0.88fr] lg:gap-24 lg:px-12 lg:pb-20 lg:pt-24">
         <div>
           <p className="eyebrow mb-6">Computer science × systems reliability</p>
-          <h1 className="serif-balance max-w-3xl font-serif text-[clamp(3.1rem,6.5vw,6.5rem)] leading-[0.93] tracking-[-0.065em]">I build the machinery that makes intelligent systems dependable.</h1>
+          <h1 className="serif-balance max-w-3xl font-serif text-[clamp(3.1rem,6.5vw,6.5rem)] leading-[0.93] tracking-[-0.065em]">I build reliable AI agents and the systems around them.</h1>
           <p className="body-copy mt-7 max-w-xl text-base sm:text-lg">I&apos;m Junkun Liu, an engineer and researcher building reliable AI agents, agent harnesses, orchestration, retrieval, and evaluation systems.</p>
         </div>
         <div className="self-end border-t border-line pt-5 lg:pt-6">
