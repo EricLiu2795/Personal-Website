@@ -39,12 +39,24 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ember); outline
 .serif-balance { text-wrap: balance; }
 .body-copy { color: var(--muted); line-height: 1.65; }
 .snapshot-item { border-bottom: 1px solid var(--line); padding: 1.15rem 0; }
+.snapshot-link { display: block; height: 100%; transition: background-color 180ms ease, color 180ms ease; }
+.snapshot-link:hover { background: rgba(243, 240, 233, 0.42); }
+.snapshot-link:focus-visible { outline-offset: -2px; }
+.snapshot-arrow { color: var(--ember); font-size: 0.95rem; opacity: 0.7; transition: opacity 180ms ease, transform 180ms ease; }
+.snapshot-link:hover .snapshot-arrow { opacity: 1; transform: translate(2px, 2px); }
 .tag { display: inline-flex; border: 1px solid #5a5b55; padding: 0.35rem 0.55rem; color: #c5c5bc; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .experience-row { display: grid; gap: 1.5rem; padding: 2rem 0; }
 .project-feature { border-top: 1px solid #4a4b46; padding-top: 2rem; }
 .compact-project { display: grid; gap: 2rem; border-top: 1px solid #4a4b46; padding: 2rem 0; }
 .leadership-row { display: grid; gap: 1.5rem; padding: 1.75rem 0; }
 
+.site-nav { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--line); background: var(--paper); }
+.primary-nav-links { display: flex; align-items: center; gap: 1.7rem; color: var(--ink); font-size: 0.85rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1; }
+.primary-nav-link { border-bottom: 1px solid transparent; color: var(--ink); padding: 0.3rem 0; transition: border-color 180ms ease, color 180ms ease; white-space: nowrap; }
+.primary-nav-link:hover { border-color: var(--ember); color: var(--ember); }
+.language-switcher { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1; white-space: nowrap; }
+.language-switcher a { border-bottom: 1px solid transparent; padding: 0.3rem 0; transition: border-color 180ms ease, color 180ms ease; }
+.language-switcher a:hover, .language-switcher a[aria-current="page"] { border-color: var(--ember); color: var(--ink); }
 .nav-link { color: var(--muted); transition: color 180ms ease; }
 .nav-link:hover { color: var(--ink); }
 
