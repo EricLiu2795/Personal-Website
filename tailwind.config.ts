@@ -9,7 +9,7 @@ const config: Config = {
         paper: "#f3f0e9",
         wash: "#e8e4da",
         line: "#c9c5bb",
-        ember: "#b94a36",
+        ember: "var(--ember)",
         moss: "#536653",
       },
       fontFamily: {
