@@ -14,6 +14,7 @@ export type ExperienceItem = {
 };
 export type TagItem = string;
 export type WorkProject = {
+  name: string;
   kicker: string;
   title: string;
   description: string;
@@ -48,6 +49,8 @@ export type PortfolioContent = {
   work: {
     index: string;
     label: string;
+    title: string;
+    navigationLabel: string;
     action: {
       kicker: string;
       title: string;
@@ -55,6 +58,9 @@ export type PortfolioContent = {
       description: string;
       tags: string[];
       repo: string;
+      detailsLabel: string;
+      sideLabel: string;
+      sideText: string;
       boundaryLabel: string;
       boundaryText: string;
       steps: Array<{ number: string; title: string; detail: string }>;
@@ -176,13 +182,18 @@ export const englishContent: PortfolioContent = {
   work: {
     index: "02 / Selected technical work",
     label: "Systems I designed and built",
+    title: "Selected projects",
+    navigationLabel: "Selected project shortcuts",
     action: {
-      kicker: "01 · Flagship / Independent AI Systems Project",
+      kicker: "Independent AI Systems Project · Jun 2026 — Present",
       title: "Personal Action Agent",
       date: "Jun 2026 — Present",
       description: "A reliability-first agent harness that converts bidirectional Gmail communication evidence into durable operational Actions.",
       tags: ["Gmail", "agent harness", "SQLite", "RAG", "evaluation"],
       repo: "View repository",
+      detailsLabel: "Architecture & evaluation details",
+      sideLabel: "Reliability & evaluation",
+      sideText: "275 regression tests and human-reviewed Gmail evaluation. Deterministic code owns identity, lifecycle transitions, idempotency, persistence authorization, and evidence completeness.",
       boundaryLabel: "Reliability boundary",
       boundaryText: "The LLM interprets semantics, but deterministic code owns state.",
       steps: [
@@ -202,7 +213,8 @@ export const englishContent: PortfolioContent = {
       ],
     },
     launchstack: {
-      kicker: "02 · LaunchStack / Founder Operating System",
+      name: "LaunchStack",
+      kicker: "Tech Lead · Founder Operating System",
       title: "From changing artifacts to a grounded weekly review.",
       description: "As Tech Lead, I designed the evidence boundary for a Founder Weekly Review / RAG pipeline that turns documents, GitHub activity, customer feedback, and team context into structured signals for changes, blockers, customer signals, and next priorities.",
       tags: ["RAG", "provenance", "document change", "structured synthesis"],
@@ -211,7 +223,8 @@ export const englishContent: PortfolioContent = {
       links: [{ label: "View on GitHub", href: "https://github.com/Deodat-Lawson/LaunchStack" }],
     },
     aftershock: {
-      kicker: "03 · Aftershock / Project Lead · HopHacks 2026",
+      name: "Aftershock",
+      kicker: "Project Lead · HopHacks 2026",
       title: "A shared operational picture for earthquake response.",
       description: "Conceived the project and led a four-person team to a working demo in 36 hours. Designed an AI-assisted system that fuses conflicting multimodal reports into shared operational state, coordinates search and rescue actions, and dynamically reroutes teams over real road networks.",
       tags: ["AI systems", "multimodal reports", "coordination", "routing"],
@@ -351,13 +364,18 @@ export const chineseContent: PortfolioContent = {
   work: {
     index: "02 / 精选技术工作",
     label: "我设计并构建的系统",
+    title: "精选项目",
+    navigationLabel: "精选项目快捷导航",
     action: {
-      kicker: "01 · 旗舰项目 / 独立 AI 系统项目",
+      kicker: "独立 AI 系统项目 · 2026 年 6 月 — 至今",
       title: "Personal Action Agent",
       date: "2026 年 6 月 — 至今",
       description: "一个以可靠性为核心的 Agent Harness，将收发 Gmail 邮件中的通信证据转化为可持久化的行动记录（Actions）。",
       tags: ["Gmail", "Agent Harness", "SQLite", "RAG", "评测"],
       repo: "查看代码仓库",
+      detailsLabel: "架构与评测细节",
+      sideLabel: "可靠性与评测",
+      sideText: "275 项回归测试，以及人工审阅的 Gmail 评测数据。由确定性代码管理记录身份、生命周期转换、幂等性、持久化授权与证据完整性。",
       boundaryLabel: "可靠性边界",
       boundaryText: "LLM 负责理解语义，确定性代码负责管理状态。",
       steps: [
@@ -377,7 +395,8 @@ export const chineseContent: PortfolioContent = {
       ],
     },
     launchstack: {
-      kicker: "02 · LaunchStack / Founder Operating System",
+      name: "LaunchStack",
+      kicker: "Tech Lead · Founder Operating System",
       title: "从变化中的产物，到有依据的每周复盘。",
       description: "作为 Tech Lead，我设计了 Founder Weekly Review / RAG 流水线的证据边界，将文档、GitHub 活动、客户反馈与团队上下文转化为关于变更、阻塞、客户信号和下一步重点的结构化信息。",
       tags: ["RAG", "来源追踪", "文档变更", "结构化综合"],
@@ -386,7 +405,8 @@ export const chineseContent: PortfolioContent = {
       links: [{ label: "在 GitHub 查看代码", href: "https://github.com/Deodat-Lawson/LaunchStack" }],
     },
     aftershock: {
-      kicker: "03 · Aftershock / 项目负责人 · HopHacks 2026",
+      name: "Aftershock",
+      kicker: "项目负责人 · HopHacks 2026",
       title: "为地震救援建立共享的行动态势。",
       description: "提出项目构想，带领四人团队在 36 小时内完成可运行的演示。设计 AI 辅助地震响应系统，将相互矛盾的多模态报告融合为共享行动状态，协调搜索与救援，并基于真实道路网络动态调整团队路线。",
       tags: ["AI 系统", "多模态报告", "行动协调", "路线规划"],

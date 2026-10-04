@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
-import type { ExperienceItem, PortfolioContent, WorkProject } from "@/lib/content";
+import type { ExperienceItem, PortfolioContent } from "@/lib/content";
 import SiteNavigation from "./site-navigation";
+import SelectedWork from "./selected-work";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const actionAgentRepository = "https://github.com/EricLiu2795/Personal-Action-Agent";
 
 function ExternalMark() {
   return <span aria-hidden="true">↗</span>;
@@ -16,10 +16,6 @@ function SectionLabel({ children, index }: { children: ReactNode; index: string 
       <p className="section-caption font-mono text-[10px] uppercase tracking-[0.16em]">{children}</p>
     </div>
   );
-}
-
-function Tag({ children }: { children: ReactNode }) {
-  return <span className="tag">{children}</span>;
 }
 
 function Experience({ item }: { item: ExperienceItem }) {
@@ -41,31 +37,12 @@ function Experience({ item }: { item: ExperienceItem }) {
   );
 }
 
-function CompactProject({ project, id }: { project: WorkProject; id: string }) {
-  return (
-    <article id={id} className="compact-project scroll-mt-6">
-      <div>
-        <p className="eyebrow">{project.kicker}</p>
-        <h2 className="mt-3 font-serif text-3xl leading-none tracking-[-0.04em]">{project.title}</h2>
-        <p className="mt-4 max-w-2xl text-sm leading-6 text-[#c5c5bc]">{project.description}</p>
-        <div className="mt-5 flex flex-wrap gap-2">{project.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
-        {project.links && <div className="mt-5 flex flex-wrap gap-5">{project.links.map(link => <a className="arrow-link" href={link.href} target="_blank" rel="noopener noreferrer" key={link.href}>{link.label} <ExternalMark /></a>)}</div>}
-      </div>
-      <div className="border-l border-[#4a4b46] pl-5">
-        <p className="eyebrow mb-3">{project.sideLabel}</p>
-        <p className="text-sm leading-6 text-[#c5c5bc]">{project.sideText}</p>
-      </div>
-    </article>
-  );
-}
-
 export default function PortfolioPage({ content }: { content: PortfolioContent }) {
   const pagePrefix = content.locale === "zh" ? `${basePath}/zh` : basePath;
   const englishHref = basePath ? `${basePath}/` : "/";
   const chineseHref = `${basePath}/zh/`;
   const sectionHref = (id: string) => `${pagePrefix}/#${id}`;
   const resumeHref = `${basePath}${content.links.resume}`;
-  const action = content.work.action;
 
   return (
     <>
@@ -112,31 +89,7 @@ export default function PortfolioPage({ content }: { content: PortfolioContent }
         <div className="border-y border-line">{content.experience.items.map((item) => <Experience item={item} key={item.id} />)}</div>
       </section>
 
-      <section id="work" className="bg-ink text-paper scroll-mt-6">
-        <div className="mx-auto max-w-[1240px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-          <SectionLabel index={content.work.index}>{content.work.label}</SectionLabel>
-          <article id="action-agent" className="project-feature scroll-mt-6">
-            <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
-              <div>
-                <p className="eyebrow mb-4">{action.kicker}</p>
-                <h2 className="font-serif text-4xl leading-[0.95] tracking-[-0.055em] sm:text-5xl">{action.title}</h2>
-                <p className="mt-4 text-sm font-bold text-ember">{action.date}</p>
-                <p className="mt-6 max-w-lg text-sm leading-6 text-[#c5c5bc]">{action.description}</p>
-                <div className="mt-6 flex flex-wrap gap-2">{action.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
-                <a className="arrow-link mt-7" href={actionAgentRepository} target="_blank" rel="noreferrer">{action.repo} <ExternalMark /></a>
-              </div>
-              <div className="grain border border-[#4a4b46] bg-[#252622] p-5 sm:p-7">
-                <div><div className="flex items-center justify-between gap-5"><p className="eyebrow">{action.boundaryLabel}</p><span className="shrink-0 whitespace-nowrap font-mono text-xs text-ember">A / 01</span></div><p className="mt-2 max-w-md font-serif text-2xl leading-tight tracking-[-0.035em]">{action.boundaryText}</p></div>
-                <div className="mt-8 grid gap-3 sm:grid-cols-4">{action.steps.map((step) => <div className="border-t border-[#4a4b46] pt-3" key={step.number}><p className="font-mono text-[9px] text-[#9b9b92]">{step.number}</p><p className="mt-2 font-bold">{step.title}</p><p className="mt-1 text-xs leading-5 text-[#9b9b92]">{step.detail}</p></div>)}</div>
-                <div className="mt-8 grid gap-5 border-t border-[#4a4b46] pt-5 sm:grid-cols-2"><div><p className="eyebrow mb-2">{action.ownershipLabel}</p><p className="text-sm leading-6 text-[#c5c5bc]">{action.ownership}</p></div><div><p className="eyebrow mb-2">{action.evidenceLabel}</p><p className="text-sm leading-6 text-[#c5c5bc]">{action.evidence}</p></div></div>
-              </div>
-            </div>
-            <div className="mt-8 grid gap-px bg-[#4a4b46] sm:grid-cols-3">{action.metrics.map((metric) => <div className="bg-ink p-5" key={metric.label}><p className="font-serif text-3xl tracking-[-0.05em]">{metric.value}</p><p className="eyebrow mt-1">{metric.label}</p><p className="mt-3 text-sm leading-6 text-[#9b9b92]">{metric.detail}</p></div>)}</div>
-          </article>
-          <CompactProject id="launchstack" project={content.work.launchstack} />
-          <CompactProject id="aftershock" project={content.work.aftershock} />
-        </div>
-      </section>
+      <SelectedWork work={content.work} />
 
       <section id="research" className="mx-auto max-w-[1240px] scroll-mt-6 px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <SectionLabel index={content.research.index}>{content.research.label}</SectionLabel>
