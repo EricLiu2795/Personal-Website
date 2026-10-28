@@ -1,35 +1,45 @@
-# Junkun Liu — Personal Website
+﻿# Junkun Liu — Personal Website V2
 
-Technical portfolio for Junkun Liu, focused on reliable AI agents, orchestration, retrieval, evaluation, and AI systems engineering.
+A bilingual software engineering portfolio built with Next.js 14, React, TypeScript and Tailwind CSS. The dark navy/violet design uses original static SVG artwork and no additional runtime dependencies.
 
-## Run locally
+## Local development
 
-```bash
-pnpm install
+```sh
+pnpm install --frozen-lockfile --ignore-scripts
 pnpm dev
 ```
 
-Open `http://localhost:3000`.
+Open http://localhost:3000. On Windows PowerShell, use `pnpm.cmd` if script execution policy blocks the shim.
 
-## Verify
+## Checks and static preview
 
-```bash
+```sh
 pnpm lint
+pnpm typecheck
 pnpm build
+python -m http.server 4173 --bind 127.0.0.1 --directory out
 ```
 
-The build is configured for a static export and writes the deployable site to `out/`.
+The production export is in `out/`. `next start` does not serve this static export; use a static server for production previews.
 
-## GitHub Pages
+To verify GitHub Pages paths locally in PowerShell:
 
-GitHub Actions deploys changes merged into `main` to:
+```powershell
+$env:GITHUB_PAGES = 'true'
+pnpm.cmd build
+Remove-Item Env:GITHUB_PAGES
+```
 
-`https://ericliu2795.github.io/Personal-Website/`
+Serve that output mounted at `/Personal-Website/`. `next.config.mjs` derives `basePath`, `assetPrefix` and `NEXT_PUBLIC_BASE_PATH` together. The existing GitHub Actions workflow deploys pushes to `main`; local feature-branch commits do not deploy anything.
 
-The Pages workflow builds with the `/Personal-Website` base path so the resume, CSS, JavaScript, and internal anchors resolve correctly under the repository subpath. Local development remains available at `http://localhost:3000`.
+## Architecture and content
 
-## Content and languages
+- `/` and `/zh/` share the server-rendered `PortfolioPage` and typed bilingual content in `lib/content.ts`.
+- The only client component is the accessible mobile navigation. Project and coursework disclosures use native `details` elements.
+- Order: hero, featured projects, research/publications, experience/teaching, about/skills, contact.
+- LaunchStack distinguishes Founder Weekly Review reporting from Vantage's broader, partially integrated technical design. Aftershock is featured; Personal Action Agent is a secondary disclosure.
+- Mystra lists ICSE 2027 acceptance, second authorship and the limited personal contribution. Genesis describes scientific-workload reconstruction and CPU/GPU validation.
+- Metadata includes localized titles/descriptions, canonical URLs, language alternates and OpenGraph. No web fonts, remote artwork, Figma runtime, WebGL or animation framework are required.
+- The existing resume URL `/Junkun-Liu-Resume.pdf` is preserved. The October 28 local source was visually checked as one page and copied byte-for-byte; see the review record for provenance.
 
-English lives at `/`; Chinese lives at `/zh/`. Both render the shared `PortfolioPage` component from typed content in `lib/content.ts`. Root layouts provide the correct document language and localized metadata. The navigation supports keyboard focus, mobile section shortcuts, and reduced motion.
-
-Selected work is ordered LaunchStack, Aftershock, then Personal Action Agent. All three use the same numbered overview and heading hierarchy; the Action Agent's architecture and evaluation details are available in a keyboard-accessible disclosure. Research covers Genesis Mission and Dynamic Taint Analysis. Project evidence links point to the public GitHub repositories and Aftershock's Devpost page; no private repository is linked. The downloadable resume is the supplied October 2026 revision.
+See [the V2 review record](docs/website-v2-review.md) for evidence, screenshots and limitations. Screenshot/QA artifacts are local under `artifacts/website-refresh/` and excluded from Git.

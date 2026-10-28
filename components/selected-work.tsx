@@ -1,80 +1,184 @@
-import type { ReactNode } from "react";
-import type { PortfolioContent, WorkProject } from "@/lib/content";
+﻿import type { PortfolioContent, WorkProject } from "@/lib/content";
 
-type ProjectEntry = WorkProject & { id: string; details?: ReactNode };
-
-function ActionDetails({ action }: { action: PortfolioContent["work"]["action"] }) {
+function ProjectIllustration({ kind }: { kind: "launchstack" | "aftershock" }) {
   return (
-    <details className="project-details">
-      <summary>{action.detailsLabel}<span aria-hidden="true">+</span></summary>
-      <div className="border-t border-[#4a4b46] pt-6">
-        <p className="eyebrow">{action.boundaryLabel}</p>
-        <p className="mt-3 max-w-2xl font-serif text-2xl leading-tight">{action.boundaryText}</p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-4">
-          {action.steps.map(step => <div className="border-t border-[#4a4b46] pt-3" key={step.number}><p className="font-mono text-xs text-[#9b9b92]">{step.number}</p><p className="mt-2 font-bold">{step.title}</p><p className="mt-1 text-xs leading-5 text-[#9b9b92]">{step.detail}</p></div>)}
-        </div>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2">
-          <div><p className="eyebrow">{action.ownershipLabel}</p><p className="mt-2 text-sm leading-6 text-[#c5c5bc]">{action.ownership}</p></div>
-          <div><p className="eyebrow">{action.evidenceLabel}</p><p className="mt-2 text-sm leading-6 text-[#c5c5bc]">{action.evidence}</p></div>
-        </div>
-        <div className="mt-6 grid gap-6 border-t border-[#4a4b46] pt-6 sm:grid-cols-3">
-          {action.metrics.map(metric => <div key={metric.label}><p className="text-base font-bold">{metric.value}</p><p className="eyebrow mt-2">{metric.label}</p><p className="mt-3 text-sm leading-6 text-[#9b9b92]">{metric.detail}</p></div>)}
-        </div>
-      </div>
-    </details>
+    <div className={`project-visual ${kind}-visual`} aria-hidden="true">
+      {kind === "launchstack" ? (
+        <>
+          <div className="pipeline-inputs">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="pipeline-connector" />
+          <div className="pipeline-core">
+            L<span>↗</span>
+          </div>
+          <div className="pipeline-connector" />
+          <div className="pipeline-output">
+            <i />
+            <i />
+            <i />
+            <i />
+          </div>
+        </>
+      ) : (
+        <svg viewBox="0 0 500 190" fill="none">
+          <g stroke="#647b91" strokeOpacity=".23">
+            <path d="M0 25L500 153M0 102L500 46M34 190L197 0M140 190L337 0M341 190L455 0M0 161L500 100M0 56L500 183" />
+            <path d="M0 30H500M0 85H500M0 140H500M90 0V190M215 0V190M340 0V190M465 0V190" />
+          </g>
+          <circle cx="250" cy="91" r="64" stroke="#72ced6" strokeOpacity=".1" />
+          <circle
+            cx="250"
+            cy="91"
+            r="43"
+            stroke="#72ced6"
+            strokeOpacity=".18"
+          />
+          <circle cx="250" cy="91" r="22" stroke="#72ced6" strokeOpacity=".3" />
+          <path
+            d="M85 139L157 127L203 83L250 91L329 72L407 44"
+            stroke="#76cfdb"
+            strokeWidth="2"
+            strokeDasharray="5 5"
+          />
+          <g fill="#8cdee5">
+            <circle cx="85" cy="139" r="4" />
+            <circle cx="250" cy="91" r="6" />
+            <circle cx="407" cy="44" r="4" />
+          </g>
+          <path d="M242 91H258M250 83V99" stroke="#101522" strokeWidth="2" />
+        </svg>
+      )}
+    </div>
   );
 }
 
-function ProjectOverview({ project, number }: { project: ProjectEntry; number: string }) {
+function ProjectCard({
+  project,
+  id,
+  number,
+}: {
+  project: WorkProject;
+  id: "launchstack" | "aftershock";
+  number: string;
+}) {
   return (
-    <article id={project.id} className="project-entry" aria-labelledby={`${project.id}-title`}>
-      <div className="project-heading">
-        <p className="project-number" aria-hidden="true">{number}</p>
-        <div>
-          <h3 id={`${project.id}-title`} className="project-title font-serif">{project.name}</h3>
-          <p className="eyebrow mt-3">{project.kicker}</p>
+    <article id={id} className="project-card" aria-labelledby={`${id}-title`}>
+      <ProjectIllustration kind={id} />
+      <div className="project-card-body">
+        <div className="project-heading">
+          <p className="eyebrow">{project.kicker}</p>
+          <span className="project-number">{number}</span>
         </div>
-      </div>
-      <div className="project-overview">
-        <div>
-          <p className="text-base font-bold leading-6">{project.title}</p>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-[#c5c5bc]">{project.description}</p>
-          <div className="mt-5 flex flex-wrap gap-2">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>
-          {project.links && <div className="mt-6 flex flex-wrap gap-5">{project.links.map(link => <a className="arrow-link" href={link.href} target="_blank" rel="noopener noreferrer" key={link.href}>{link.label}<span aria-hidden="true">↗</span></a>)}</div>}
-        </div>
-        <div className="border-l border-[#4a4b46] pl-5">
+        <h3 id={`${id}-title`}>{project.name}</h3>
+        <p className="project-subtitle">{project.title}</p>
+        <p className="body-copy">{project.description}</p>
+        {project.highlights && (
+          <div className="project-highlights">
+            {project.highlights.map((item) => (
+              <div key={item.label}>
+                <h4>{item.label}</h4>
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="project-note">
           <p className="eyebrow">{project.sideLabel}</p>
-          <p className="mt-3 text-sm leading-6 text-[#c5c5bc]">{project.sideText}</p>
+          <p>{project.sideText}</p>
+        </div>
+        <div className="tags">
+          {project.tags.map((tag) => (
+            <span className="tag" key={tag}>
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className="project-links">
+          {project.links?.map((link) => (
+            <a
+              className="arrow-link"
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={link.href}
+            >
+              {link.label}
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))}
         </div>
       </div>
-      {project.details}
     </article>
   );
 }
 
-export default function SelectedWork({ work }: { work: PortfolioContent["work"] }) {
+export default function SelectedWork({
+  work,
+}: {
+  work: PortfolioContent["work"];
+}) {
   const action = work.action;
-  const projects: ProjectEntry[] = [
-    { ...work.launchstack, id: "launchstack" },
-    { ...work.aftershock, id: "aftershock" },
-    {
-      id: "action-agent", name: action.title, kicker: action.kicker, title: action.boundaryText,
-      description: action.description, tags: action.tags, sideLabel: action.sideLabel, sideText: action.sideText,
-      links: [{ label: action.repo, href: "https://github.com/EricLiu2795/Personal-Action-Agent" }],
-      details: <ActionDetails action={action} />,
-    },
-  ];
-
   return (
-    <section id="work" className="bg-ink text-paper" aria-labelledby="work-title">
-      <div className="mx-auto max-w-[1240px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-        <div className="mb-7 flex items-center justify-between gap-4"><p className="eyebrow">{work.index}</p><p className="section-caption font-mono text-[10px] uppercase tracking-[0.16em]">{work.label}</p></div>
-        <h2 id="work-title" className="font-serif text-3xl tracking-[-0.04em] sm:text-4xl">{work.title}</h2>
-        <nav className="work-index" aria-label={work.navigationLabel}>
-          {projects.map((project, index) => <a href={`#${project.id}`} key={project.id}><span className="font-mono text-sm text-ember">{String(index + 1).padStart(2, "0")}</span><span>{project.name}</span><span className="text-ember" aria-hidden="true">↘</span></a>)}
-        </nav>
-        {projects.map((project, index) => <ProjectOverview project={project} number={String(index + 1).padStart(2, "0")} key={project.id} />)}
+    <section
+      id="work"
+      className="section-shell section-space"
+      aria-labelledby="work-title"
+    >
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">{work.index}</p>
+          <h2 id="work-title">{work.title}</h2>
+        </div>
+        <p className="section-caption">{work.label}</p>
       </div>
+      <div className="projects-grid">
+        <ProjectCard project={work.launchstack} id="launchstack" number="01" />
+        <ProjectCard project={work.aftershock} id="aftershock" number="02" />
+      </div>
+      <details id="action-agent" className="secondary-project">
+        <summary>
+          <span>
+            <span className="eyebrow">{action.kicker}</span>
+            <strong>{action.title}</strong>
+          </span>
+          <span className="disclosure-plus" aria-hidden="true">
+            +
+          </span>
+        </summary>
+        <div className="secondary-project-content">
+          <p>{action.description}</p>
+          <p className="secondary-boundary">{action.boundaryText}</p>
+          <div className="secondary-columns">
+            <div>
+              <h3>{action.ownershipLabel}</h3>
+              <p>{action.ownership}</p>
+            </div>
+            <div>
+              <h3>{action.evidenceLabel}</h3>
+              <p>{action.evidence}</p>
+            </div>
+          </div>
+          <div className="tags">
+            {action.tags.map((tag) => (
+              <span className="tag" key={tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <a
+            className="arrow-link"
+            href="https://github.com/EricLiu2795/Personal-Action-Agent"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {action.repo}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </details>
     </section>
   );
 }
