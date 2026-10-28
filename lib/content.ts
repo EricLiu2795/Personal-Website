@@ -387,7 +387,7 @@ export const englishContent: PortfolioContent = {
     label: "Education",
     university: "Johns Hopkins University",
     degree: "B.S. in Applied Mathematics & Statistics and Computer Science",
-    meta: "GPA: 3.74 / 4.00 · Expected May 2028 · Baltimore, MD",
+    meta: "Expected May 2028 · Baltimore, MD",
     courseworkLabel: "Relevant coursework",
     coursework:
       "Machine Learning & Deep Learning · NLP: Self-Supervised Models · Software System Design · Computer System Fundamentals · Data Structures & Algorithms · Probability · Optimization",
@@ -664,7 +664,7 @@ export const chineseContent: PortfolioContent = {
     label: "教育背景",
     university: "Johns Hopkins University",
     degree: "应用数学与统计学、计算机科学 · B.S.",
-    meta: "GPA：3.74 / 4.00 · 预计 2028 年 5 月毕业 · Baltimore, MD",
+    meta: "预计 2028 年 5 月毕业 · Baltimore, MD",
     courseworkLabel: "相关课程",
     coursework:
       "机器学习与深度学习 · 自然语言处理：自监督模型 · 软件系统设计 · 计算机系统基础 · 数据结构与算法 · 概率论 · 优化",
