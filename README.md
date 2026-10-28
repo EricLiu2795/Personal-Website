@@ -36,8 +36,8 @@ Serve that output mounted at `/Personal-Website/`. `next.config.mjs` derives `ba
 
 - `/` and `/zh/` share the server-rendered `PortfolioPage` and typed bilingual content in `lib/content.ts`.
 - The only client component is the accessible mobile navigation. Project and coursework disclosures use native `details` elements.
-- Order: hero, featured projects, research/publications, experience/teaching, about/skills, contact.
-- LaunchStack distinguishes Founder Weekly Review reporting from Vantage's broader, partially integrated technical design. Aftershock is featured; Personal Action Agent is a secondary disclosure.
+- Order: hero, LaunchStack Featured Work, Aftershock Hackathon Spotlight, research/publications, experience/teaching, about/skills, contact.
+- LaunchStack distinguishes Founder Weekly Review reporting from Vantage's broader, partially integrated technical design. Its optional architecture disclosure is independent of the main project link. Aftershock has a dedicated dashboard-and-award presentation; Personal Action Agent remains a secondary disclosure.
 - Mystra lists ICSE 2027 acceptance, second authorship and the limited personal contribution. Genesis describes scientific-workload reconstruction and CPU/GPU validation.
 - Metadata includes localized titles/descriptions, canonical URLs, language alternates and OpenGraph. No web fonts, remote artwork, Figma runtime, WebGL or animation framework are required.
 - The existing resume URL `/Junkun-Liu-Resume.pdf` is preserved. The October 28 local source was visually checked as one page and copied byte-for-byte; see the review record for provenance.
@@ -45,3 +45,5 @@ Serve that output mounted at `/Personal-Website/`. `next.config.mjs` derives `ba
 See [the V2 review record](docs/website-v2-review.md) for evidence, screenshots and limitations. Screenshot/QA artifacts are local under `artifacts/website-refresh/` and excluded from Git.
 
 The [project evidence polish record](docs/project-evidence-polish.md) documents the architecture thumbnail, supplied Aftershock screenshot provenance, accessible full-card links and follow-up QA.
+
+The [editorial work update](docs/editorial-work-review.md) documents the subsequent Featured Work / Hackathon Spotlight layout, responsive screenshots and validation.

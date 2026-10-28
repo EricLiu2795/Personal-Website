@@ -22,7 +22,12 @@ export type WorkProject = {
   sideLabel: string;
   sideText: string;
   links: [{ label: string; href: string }];
-  highlights?: Array<{ label: string; text: string }>;
+  highlights?: Array<{
+    eyebrow: string;
+    label: string;
+    text: string;
+    detail: string;
+  }>;
 };
 export type ProjectArchitecture = {
   description: string;
@@ -69,6 +74,18 @@ export type PortfolioContent = {
     label: string;
     title: string;
     navigationLabel: string;
+    technicalDesignLabel: string;
+    technicalDesignDescription: string;
+    moreProjectsLabel: string;
+    spotlight: {
+      index: string;
+      title: string;
+      label: string;
+      teamValue: string;
+      teamLabel: string;
+      durationValue: string;
+      durationLabel: string;
+    };
     opensInNewTab: string;
     demoImageAlt: string;
     demoImageCaption: string;
@@ -202,7 +219,7 @@ export const englishContent: PortfolioContent = {
     },
   ],
   experience: {
-    index: "03 / Experience",
+    index: "04 / Experience",
     label: "Professional experience",
     items: [
       {
@@ -232,10 +249,23 @@ export const englishContent: PortfolioContent = {
     ],
   },
   work: {
-    index: "01 / Featured work",
-    label: "Selected engineering work",
-    title: "Selected projects",
+    index: "01 / Engineering leadership",
+    label: "Systems design · Engineering leadership",
+    title: "Featured Work",
     navigationLabel: "Selected project shortcuts",
+    technicalDesignLabel: "Technical Design",
+    technicalDesignDescription:
+      "Two connected workflows with different scopes. Vantage combines implemented, partially integrated, and proposed components.",
+    moreProjectsLabel: "More Projects",
+    spotlight: {
+      index: "02 / Hackathon",
+      title: "Hackathon Spotlight",
+      label: "An award-winning earthquake-response prototype.",
+      teamValue: "4",
+      teamLabel: "Team members · led by me",
+      durationValue: "36h",
+      durationLabel: "Working prototype",
+    },
     opensInNewTab: "opens in a new tab",
     demoImageAlt:
       "Aftershock prototype demo: Caraballeda rescue map, incoming reports, drone progress and rescue dispatch status. Cropped from the supplied video screenshot.",
@@ -324,12 +354,17 @@ export const englishContent: PortfolioContent = {
         "I translate product requirements into pipeline architecture and engineering plans, coordinate integrations across the team, and review code and PRs for implementation quality.",
       highlights: [
         {
+          eyebrow: "Weekly reporting workflow",
           label: "Founder Weekly Review",
-          text: "An AI-assisted weekly reporting workflow that turns fragmented documents, GitHub activity, customer feedback, and team context into evidence-grounded summaries.",
+          text: "Processes fragmented documents, GitHub activity, customer feedback, and team context into evidence-grounded weekly reports with traceable sources.",
+          detail:
+            "Evidence processing · Structured reporting · Source traceability",
         },
         {
+          eyebrow: "Broader decision-support design",
           label: "Vantage",
           text: "A broader decision-support design connecting role-aware context, evidence retrieval, AI-generated reports, human review, and tracked commitments.",
+          detail: "Partially integrated · Further components proposed",
         },
       ],
       tags: ["Technical design", "RAG", "Integration", "Code review"],
@@ -348,21 +383,21 @@ export const englishContent: PortfolioContent = {
       kicker: "Project Lead · HopHacks 2026",
       title: "A shared operational picture for earthquake response.",
       description:
-        "Conceived the project and led a four-person team to a working demo in 36 hours. Designed an AI-assisted system that fuses conflicting multimodal reports into shared operational state, coordinates search and rescue actions, and dynamically reroutes teams over real road networks.",
+        "An AI-assisted earthquake-response prototype that fuses conflicting multimodal reports into shared operational state, coordinates search and rescue, and dynamically reroutes teams over real road networks.",
       tags: ["AI systems", "multimodal reports", "coordination", "routing"],
       sideLabel: "1st place · Bloomberg track",
       sideText:
-        "Winner of the Bloomberg Most Philanthropic Hack track at HopHacks 2026. Four people, 36 hours, a working demo.",
+        "First place in the Bloomberg Most Philanthropic Hack track at HopHacks 2026.",
       links: [
         {
-          label: "View project on Devpost",
+          label: "View Project & Demo",
           href: "https://devpost.com/software/aftershock-wd7a4s",
         },
       ],
     },
   },
   research: {
-    index: "02 / Research",
+    index: "03 / Research",
     label: "Research & publications",
     entries: [
       {
@@ -443,7 +478,7 @@ export const englishContent: PortfolioContent = {
       "Machine Learning & Deep Learning · NLP: Self-Supervised Models · Software System Design · Computer System Fundamentals · Data Structures & Algorithms · Probability · Optimization",
   },
   skills: {
-    index: "06 / Technical skills",
+    index: "05 / Technical skills",
     label: "Technical skills",
     items: [
       { label: "Languages", value: "Python, C++, JavaScript, TypeScript, SQL" },
@@ -464,7 +499,7 @@ export const englishContent: PortfolioContent = {
     ],
   },
   contact: {
-    index: "07 / Contact",
+    index: "06 / Contact",
     label: "Open channel",
     title: "Let's build something useful.",
     emailLabel: "jliu384@jh.edu",
@@ -522,7 +557,7 @@ export const chineseContent: PortfolioContent = {
     },
   ],
   experience: {
-    index: "03 / 经历",
+    index: "04 / 经历",
     label: "专业经历",
     items: [
       {
@@ -552,10 +587,23 @@ export const chineseContent: PortfolioContent = {
     ],
   },
   work: {
-    index: "01 / 精选项目",
-    label: "精选工程项目",
-    title: "精选项目",
+    index: "01 / 工程领导力",
+    label: "系统设计 · 工程领导力",
+    title: "精选工作",
     navigationLabel: "精选项目快捷导航",
+    technicalDesignLabel: "技术设计",
+    technicalDesignDescription:
+      "两个相互关联、范围不同的工作流。Vantage 包含已实现、部分集成与规划中的组件。",
+    moreProjectsLabel: "更多项目",
+    spotlight: {
+      index: "02 / 黑客松",
+      title: "黑客松亮点",
+      label: "获奖的地震响应原型。",
+      teamValue: "4",
+      teamLabel: "团队成员 · 由我带领",
+      durationValue: "36h",
+      durationLabel: "完成可运行原型",
+    },
     opensInNewTab: "在新标签页打开",
     demoImageAlt:
       "Aftershock 原型演示：Caraballeda 救援地图、输入报告、无人机进度与救援调度状态。裁剪自提供的视频截图。",
@@ -632,12 +680,16 @@ export const chineseContent: PortfolioContent = {
         "将产品需求转化为流水线架构与工程计划，协调跨团队集成，并通过代码与 PR 审查把关实施质量。",
       highlights: [
         {
+          eyebrow: "每周报告工作流",
           label: "Founder Weekly Review",
-          text: "AI 辅助周报工作流，将分散的文档、GitHub 活动、客户反馈和团队上下文整理为有证据支撑的摘要。",
+          text: "将分散的文档、GitHub 活动、客户反馈和团队上下文处理为有证据支撑、可追溯来源的每周报告。",
+          detail: "证据处理 · 结构化报告 · 来源追溯",
         },
         {
+          eyebrow: "更广泛的决策支持设计",
           label: "Vantage",
           text: "更广泛的决策支持系统设计，连接角色感知上下文、证据检索、AI 报告、人工审阅和承诺跟踪。",
+          detail: "部分集成 · 更多组件仍在规划中",
         },
       ],
       tags: ["技术设计", "RAG", "系统集成", "代码审查"],
@@ -656,21 +708,20 @@ export const chineseContent: PortfolioContent = {
       kicker: "项目负责人 · HopHacks 2026",
       title: "为地震救援建立共享的行动态势。",
       description:
-        "提出项目构想，带领四人团队在 36 小时内完成可运行的演示。设计 AI 辅助地震响应系统，将相互矛盾的多模态报告融合为共享行动状态，协调搜索与救援，并基于真实道路网络动态调整团队路线。",
+        "AI 辅助地震响应原型，将相互矛盾的多模态报告融合为共享行动状态，协调搜索与救援，并基于真实道路网络动态调整团队路线。",
       tags: ["AI 系统", "多模态报告", "行动协调", "路线规划"],
       sideLabel: "第一名 · Bloomberg 赛道",
-      sideText:
-        "HopHacks 2026 Bloomberg Most Philanthropic Hack 赛道冠军。四人团队、36 小时、可运行的演示。",
+      sideText: "HopHacks 2026 Bloomberg Most Philanthropic Hack 赛道第一名。",
       links: [
         {
-          label: "在 Devpost 查看项目",
+          label: "查看项目与演示",
           href: "https://devpost.com/software/aftershock-wd7a4s",
         },
       ],
     },
   },
   research: {
-    index: "02 / 研究",
+    index: "03 / 研究",
     label: "研究与论文",
     entries: [
       {
@@ -750,7 +801,7 @@ export const chineseContent: PortfolioContent = {
       "机器学习与深度学习 · 自然语言处理：自监督模型 · 软件系统设计 · 计算机系统基础 · 数据结构与算法 · 概率论 · 优化",
   },
   skills: {
-    index: "06 / 技术技能",
+    index: "05 / 技术技能",
     label: "技术技能",
     items: [
       { label: "语言", value: "Python, C++, JavaScript, TypeScript, SQL" },
@@ -771,7 +822,7 @@ export const chineseContent: PortfolioContent = {
     ],
   },
   contact: {
-    index: "07 / 联系",
+    index: "06 / 联系",
     label: "开放联系",
     title: "一起构建有用的软件。",
     emailLabel: "jliu384@jh.edu",

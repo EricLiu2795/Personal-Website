@@ -164,7 +164,7 @@ export default function PortfolioPage({
           <div className="section-heading">
             <div>
               <p className="eyebrow">
-                02 / {zh ? "探索与验证" : "Investigation & validation"}
+                03 / {zh ? "探索与验证" : "Investigation & validation"}
               </p>
               <h2 id="research-title">
                 {zh ? "研究与论文" : "Research & publications"}
@@ -221,7 +221,7 @@ export default function PortfolioPage({
           <div className="section-heading">
             <div>
               <p className="eyebrow">
-                03 / {zh ? "实践与协作" : "Engineering & collaboration"}
+                04 / {zh ? "实践与协作" : "Engineering & collaboration"}
               </p>
               <h2 id="experience-title">{content.experience.label}</h2>
             </div>
@@ -268,7 +268,7 @@ export default function PortfolioPage({
             <div className="section-heading">
               <div>
                 <p className="eyebrow">
-                  04 / {zh ? "基础与工具" : "Foundations & tools"}
+                  05 / {zh ? "基础与工具" : "Foundations & tools"}
                 </p>
                 <h2>{zh ? "关于我" : "A little more about me"}</h2>
               </div>
@@ -300,7 +300,7 @@ export default function PortfolioPage({
         </section>
       </main>
       <footer id="contact" className="section-shell contact-section">
-        <p className="eyebrow">05 / {content.contact.label}</p>
+        <p className="eyebrow">06 / {content.contact.label}</p>
         <div className="contact-grid">
           <div>
             <h2>{content.contact.title}</h2>

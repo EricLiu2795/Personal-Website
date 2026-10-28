@@ -20,7 +20,7 @@ export default function ProjectArchitectureDiagram({
 }) {
   return (
     <div
-      className="project-visual architecture-visual"
+      className="architecture-visual"
       role="img"
       aria-label={content.description}
     >
