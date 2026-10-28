@@ -174,18 +174,19 @@ export default function PortfolioPage({
           </div>
           <div className="research-grid">
             {content.research.entries.map((entry, index) => (
-              <article
+              <a
                 id={entry.id}
                 className={`research-card ${index === 0 ? "publication-card" : ""}`}
                 key={entry.id}
+                href={entry.links[0].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-labelledby={`${entry.id}-title ${entry.id}-cta`}
               >
                 <div className="research-top">
-                  <span className="research-symbol" aria-hidden="true">
-                    {index === 0 ? "[ M ]" : "∑"}
-                  </span>
                   <p className="eyebrow">{entry.dates}</p>
                 </div>
-                <h3>{entry.title}</h3>
+                <h3 id={`${entry.id}-title`}>{entry.title}</h3>
                 <p className="research-role">{entry.role}</p>
                 {entry.context && (
                   <p className="research-context">{entry.context}</p>
@@ -198,23 +199,17 @@ export default function PortfolioPage({
                     </div>
                   ))}
                 </div>
-                {entry.links && (
-                  <div className="project-links">
-                    {entry.links.map((link) => (
-                      <a
-                        className="arrow-link"
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        key={link.href}
-                      >
-                        {link.label}
-                        <span aria-hidden="true">↗</span>
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </article>
+                <div className="project-links">
+                  <span id={`${entry.id}-cta`} className="arrow-link">
+                    {entry.links[0].label}
+                    <span aria-hidden="true">↗</span>
+                    <span className="sr-only">
+                      {" "}
+                      ({content.work.opensInNewTab})
+                    </span>
+                  </span>
+                </div>
+              </a>
             ))}
           </div>
         </section>

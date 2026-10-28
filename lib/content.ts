@@ -21,8 +21,15 @@ export type WorkProject = {
   tags: TagItem[];
   sideLabel: string;
   sideText: string;
-  links?: Array<{ label: string; href: string }>;
+  links: [{ label: string; href: string }];
   highlights?: Array<{ label: string; text: string }>;
+};
+export type ProjectArchitecture = {
+  description: string;
+  inputs: string[];
+  weekly: { title: string; status: string; steps: string[] };
+  vantage: { title: string; status: string; steps: string[] };
+  maturity: string;
 };
 export type ActionMetric = { value: string; label: string; detail: string };
 export type SkillItem = { label: string; value: string };
@@ -62,6 +69,10 @@ export type PortfolioContent = {
     label: string;
     title: string;
     navigationLabel: string;
+    opensInNewTab: string;
+    demoImageAlt: string;
+    demoImageCaption: string;
+    architecture: ProjectArchitecture;
     action: {
       kicker: string;
       title: string;
@@ -92,7 +103,7 @@ export type PortfolioContent = {
       title: string;
       role: string;
       context?: string;
-      links?: Array<{ label: string; href: string }>;
+      links: [{ label: string; href: string }];
       dates: string;
       items: Array<{ label: string; text: string }>;
     }>;
@@ -225,6 +236,39 @@ export const englishContent: PortfolioContent = {
     label: "Selected engineering work",
     title: "Selected projects",
     navigationLabel: "Selected project shortcuts",
+    opensInNewTab: "opens in a new tab",
+    demoImageAlt:
+      "Aftershock prototype demo: Caraballeda rescue map, incoming reports, drone progress and rescue dispatch status. Cropped from the supplied video screenshot.",
+    demoImageCaption: "Prototype demo · Caraballeda rescue operations",
+    architecture: {
+      description:
+        "Founder Weekly Review turns documents, GitHub activity, customer signals and team context into evidence-grounded weekly reports. The broader Vantage design connects role-aware retrieval to AI reports, human review, decisions and commitments; maturity varies by component.",
+      inputs: [
+        "Documents",
+        "GitHub activity",
+        "Customer signals",
+        "Team context",
+      ],
+      weekly: {
+        title: "Founder Weekly Review",
+        status: "Reporting workflow",
+        steps: [
+          "Evidence processing & retrieval",
+          "Source-grounded weekly report",
+        ],
+      },
+      vantage: {
+        title: "Vantage",
+        status: "Broader technical design",
+        steps: [
+          "Role-aware context & retrieval",
+          "AI-assisted reports",
+          "Human review, decisions & commitments",
+        ],
+      },
+      maturity:
+        "Vantage: implemented, partially integrated & proposed components",
+    },
     action: {
       kicker: "Independent AI Systems Project · Jun 2026 — Present",
       title: "Personal Action Agent",
@@ -324,7 +368,7 @@ export const englishContent: PortfolioContent = {
       {
         id: "taint-analysis",
         title: "Mystra",
-        role: "Second author · ICSE 2027 Accepted",
+        role: "ICSE 2027 · Accepted Paper · Second Author",
         context:
           "Mystra: Declarative Dynamic Taint Analysis via Shadow Virtual Machine",
         dates: "Jun — Jul 2026",
@@ -338,7 +382,7 @@ export const englishContent: PortfolioContent = {
           },
           {
             label: "My contribution",
-            text: "Validated vulnerabilities in real-world web applications and provided limited runtime-porting and evaluation support.",
+            text: "Reproduced and evaluated real-world CVE cases in web applications and assisted with cross-runtime evaluation.",
           },
         ],
       },
@@ -349,6 +393,12 @@ export const englishContent: PortfolioContent = {
         context:
           "Research on reliable AI-generated scientific computing software.",
         dates: "Sep 2026 — present",
+        links: [
+          {
+            label: "Read the project announcement",
+            href: "https://www.cs.jhu.edu/news/hopkins-led-team-selected-for-inaugural-department-of-energy-genesis-mission-award/",
+          },
+        ],
         items: [
           {
             label: "Reconstruction",
@@ -416,7 +466,7 @@ export const englishContent: PortfolioContent = {
   contact: {
     index: "07 / Contact",
     label: "Open channel",
-    title: "Have a hard systems problem?",
+    title: "Let's build something useful.",
     emailLabel: "jliu384@jh.edu",
     footer: "Junkun Liu / Baltimore, MD",
     footerMeta: "Built for durable work · 2026",
@@ -506,6 +556,30 @@ export const chineseContent: PortfolioContent = {
     label: "精选工程项目",
     title: "精选项目",
     navigationLabel: "精选项目快捷导航",
+    opensInNewTab: "在新标签页打开",
+    demoImageAlt:
+      "Aftershock 原型演示：Caraballeda 救援地图、输入报告、无人机进度与救援调度状态。裁剪自提供的视频截图。",
+    demoImageCaption: "原型演示 · Caraballeda 救援行动",
+    architecture: {
+      description:
+        "Founder Weekly Review 将文档、GitHub 动态、客户信号与团队上下文转为有来源依据的每周报告。Vantage 的整体设计连接角色上下文检索、AI 报告、人工审阅、决策与承诺追踪，各组件成熟度不同。",
+      inputs: ["文档", "GitHub 动态", "客户信号", "团队上下文"],
+      weekly: {
+        title: "Founder Weekly Review",
+        status: "每周报告流程",
+        steps: ["证据处理与检索", "有来源依据的每周报告"],
+      },
+      vantage: {
+        title: "Vantage",
+        status: "整体技术设计",
+        steps: [
+          "角色上下文与证据检索",
+          "AI 辅助报告",
+          "人工审阅、决策与承诺追踪",
+        ],
+      },
+      maturity: "Vantage：包含已实现、部分集成与规划中的组件",
+    },
     action: {
       kicker: "独立 AI 系统项目 · 2026 年 6 月 — 至今",
       title: "Personal Action Agent",
@@ -602,7 +676,7 @@ export const chineseContent: PortfolioContent = {
       {
         id: "taint-analysis",
         title: "Mystra",
-        role: "第二作者 · ICSE 2027 已接收",
+        role: "ICSE 2027 · 论文已接收 · 第二作者",
         context:
           "Mystra: Declarative Dynamic Taint Analysis via Shadow Virtual Machine",
         dates: "2026 年 6 月 — 7 月",
@@ -616,7 +690,7 @@ export const chineseContent: PortfolioContent = {
           },
           {
             label: "个人贡献",
-            text: "验证真实 Web 应用中的漏洞，并提供有限的运行时移植与评测支持。",
+            text: "复现并评测真实 Web 应用中的 CVE 漏洞案例，协助跨运行时评测。",
           },
         ],
       },
@@ -626,6 +700,12 @@ export const chineseContent: PortfolioContent = {
         role: "本科研究员 · Prof. Ziyang Li",
         context: "研究可靠的 AI 生成科学计算软件。",
         dates: "2026 年 9 月 — 至今",
+        links: [
+          {
+            label: "阅读项目介绍",
+            href: "https://www.cs.jhu.edu/news/hopkins-led-team-selected-for-inaugural-department-of-energy-genesis-mission-award/",
+          },
+        ],
         items: [
           {
             label: "工作负载重建",
@@ -693,7 +773,7 @@ export const chineseContent: PortfolioContent = {
   contact: {
     index: "07 / 联系",
     label: "开放联系",
-    title: "正在解决棘手的系统问题？",
+    title: "一起构建有用的软件。",
     emailLabel: "jliu384@jh.edu",
     footer: "刘峻锟 / Baltimore, MD",
     footerMeta: "为持久而可靠的工作而构建 · 2026",

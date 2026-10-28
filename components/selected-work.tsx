@@ -1,56 +1,29 @@
+import Image from "next/image";
 import type { PortfolioContent, WorkProject } from "@/lib/content";
+import ProjectArchitectureDiagram from "./project-architecture";
 
-function ProjectIllustration({ kind }: { kind: "launchstack" | "aftershock" }) {
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function ProjectVisual({
+  id,
+  work,
+}: {
+  id: "launchstack" | "aftershock";
+  work: PortfolioContent["work"];
+}) {
+  if (id === "launchstack")
+    return <ProjectArchitectureDiagram content={work.architecture} />;
   return (
-    <div className={`project-visual ${kind}-visual`} aria-hidden="true">
-      {kind === "launchstack" ? (
-        <>
-          <div className="pipeline-inputs">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="pipeline-connector" />
-          <div className="pipeline-core">
-            L<span>↗</span>
-          </div>
-          <div className="pipeline-connector" />
-          <div className="pipeline-output">
-            <i />
-            <i />
-            <i />
-            <i />
-          </div>
-        </>
-      ) : (
-        <svg viewBox="0 0 500 190" fill="none">
-          <g stroke="#9fb8d1" strokeOpacity=".35">
-            <path d="M0 25L500 153M0 102L500 46M34 190L197 0M140 190L337 0M341 190L455 0M0 161L500 100M0 56L500 183" />
-            <path d="M0 30H500M0 85H500M0 140H500M90 0V190M215 0V190M340 0V190M465 0V190" />
-          </g>
-          <circle cx="250" cy="91" r="64" stroke="#72ced6" strokeOpacity=".1" />
-          <circle
-            cx="250"
-            cy="91"
-            r="43"
-            stroke="#72ced6"
-            strokeOpacity=".18"
-          />
-          <circle cx="250" cy="91" r="22" stroke="#72ced6" strokeOpacity=".3" />
-          <path
-            d="M85 139L157 127L203 83L250 91L329 72L407 44"
-            stroke="#9aeaf2"
-            strokeWidth="2"
-            strokeDasharray="5 5"
-          />
-          <g fill="#8cdee5">
-            <circle cx="85" cy="139" r="4" />
-            <circle cx="250" cy="91" r="6" />
-            <circle cx="407" cy="44" r="4" />
-          </g>
-          <path d="M242 91H258M250 83V99" stroke="#101522" strokeWidth="2" />
-        </svg>
-      )}
+    <div className="project-visual aftershock-visual">
+      <Image
+        src={`${basePath}/projects/aftershock-dashboard.webp`}
+        width={1854}
+        height={886}
+        sizes="(max-width: 767px) calc(100vw - 40px), 550px"
+        alt={work.demoImageAlt}
+        className="project-screenshot"
+      />
+      <p className="project-visual-caption">{work.demoImageCaption}</p>
     </div>
   );
 }
@@ -59,14 +32,24 @@ function ProjectCard({
   project,
   id,
   number,
+  work,
 }: {
   project: WorkProject;
   id: "launchstack" | "aftershock";
   number: string;
+  work: PortfolioContent["work"];
 }) {
+  const destination = project.links[0];
   return (
-    <article id={id} className="project-card" aria-labelledby={`${id}-title`}>
-      <ProjectIllustration kind={id} />
+    <a
+      id={id}
+      className="project-card"
+      href={destination.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-labelledby={`${id}-title ${id}-cta`}
+    >
+      <ProjectVisual id={id} work={work} />
       <div className="project-card-body">
         <div className="project-heading">
           <p className="eyebrow">{project.kicker}</p>
@@ -97,21 +80,14 @@ function ProjectCard({
           ))}
         </div>
         <div className="project-links">
-          {project.links?.map((link) => (
-            <a
-              className="arrow-link"
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={link.href}
-            >
-              {link.label}
-              <span aria-hidden="true">↗</span>
-            </a>
-          ))}
+          <span id={`${id}-cta`} className="arrow-link">
+            {destination.label}
+            <span aria-hidden="true">↗</span>
+            <span className="sr-only"> ({work.opensInNewTab})</span>
+          </span>
         </div>
       </div>
-    </article>
+    </a>
   );
 }
 
@@ -135,8 +111,18 @@ export default function SelectedWork({
         <p className="section-caption">{work.label}</p>
       </div>
       <div className="projects-grid">
-        <ProjectCard project={work.launchstack} id="launchstack" number="01" />
-        <ProjectCard project={work.aftershock} id="aftershock" number="02" />
+        <ProjectCard
+          project={work.launchstack}
+          id="launchstack"
+          number="01"
+          work={work}
+        />
+        <ProjectCard
+          project={work.aftershock}
+          id="aftershock"
+          number="02"
+          work={work}
+        />
       </div>
       <details id="action-agent" className="secondary-project">
         <summary>

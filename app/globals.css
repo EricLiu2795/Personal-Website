@@ -403,87 +403,152 @@ svg {
   border-radius: 14px;
   overflow: hidden;
   background: var(--surface);
-  transition: border-color 180ms ease;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+.project-card:focus-visible,
+.research-card:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 5px;
+  border-radius: 14px;
 }
 .project-visual {
-  height: 182px;
+  height: 334px;
   flex-shrink: 0;
   border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 40px;
   background:
-    radial-gradient(ellipse at 50% 100%, #7954d580, transparent 75%), #222540;
+    radial-gradient(ellipse at 50% 90%, #7954d52e, transparent 75%), #171d33;
+}
+.architecture-visual {
+  padding: 20px;
+  display: grid;
+  align-items: center;
+}
+.architecture {
+  width: 100%;
+}
+.architecture-inputs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.architecture-inputs span {
+  border: 1px solid #4f5179;
+  border-radius: 5px;
+  padding: 6px 4px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #d4d8ef;
+  background: #262b45;
+}
+.architecture-lane {
+  padding: 11px 12px;
+  border: 1px solid #7364a8;
+  border-radius: 8px;
+  background: #25233c;
+  position: relative;
+}
+.weekly-lane::before {
+  content: "";
+  position: absolute;
+  height: 14px;
+  top: -15px;
+  left: 50%;
+  border-left: 1px solid #b49ded;
+}
+.architecture-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+.architecture-heading strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #efeaff;
+}
+.architecture-heading > span {
+  font-size: 10px;
+  color: #c6bbdf;
+  text-align: right;
+}
+.architecture-flow-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.architecture-flow-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.architecture-flow {
+  display: grid;
+  gap: 18px;
+}
+.architecture-node {
+  position: relative;
+  display: grid;
+  align-items: center;
+  padding: 8px;
+  min-height: 48px;
+  border-radius: 5px;
+  background: #383252;
+  border: 1px solid #655984;
+  box-shadow: 0 0 12px #a58bff0b;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #ece7ff;
+}
+.architecture-node:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  left: calc(100% + 3px);
+  width: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #c6abff;
+  font-size: 16px;
+}
+.vantage-lane {
+  border-style: dashed;
+  border-color: #8671ad;
+  background: #1e2238;
+  margin-top: 10px;
+}
+.vantage-lane .architecture-node {
+  background: #2a2b44;
+  border-style: dashed;
+}
+.architecture-maturity {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #beb5d7;
+  margin-top: 10px;
 }
 .aftershock-visual {
-  background:
-    radial-gradient(ellipse at 50% 70%, #24768166, transparent 70%), #1b2b40;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px;
+  gap: 12px;
+  background: #131c2b;
 }
-.aftershock-visual svg {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-.pipeline-inputs {
-  display: grid;
-  gap: 7px;
-}
-.pipeline-inputs span {
+.project-screenshot {
   display: block;
-  width: 48px;
-  height: 16px;
-  border: 1px solid #9e87e2;
-  border-radius: 4px;
-  background: #3b325b;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1854 / 886;
+  object-fit: contain;
+  border: 1px solid #4c5d71;
+  border-radius: 6px;
 }
-.pipeline-inputs span:nth-child(2) {
-  transform: translateX(-10px);
-  opacity: 0.7;
-}
-.pipeline-connector {
-  width: 48px;
-  height: 1px;
-  background: linear-gradient(90deg, #9e87e2, #c2aaff);
-}
-.pipeline-core {
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
-  font-size: 29px;
-  border-radius: 16px;
-  border: 1px solid #bca4ff;
-  background: #674c9e;
-  box-shadow: 0 0 36px #a17aff55;
-  position: relative;
-  font-weight: 600;
-}
-.pipeline-core span {
-  position: absolute;
-  right: 11px;
-  top: 8px;
-  font-size: 16px;
-  color: #e0d5ff;
-}
-.pipeline-output {
-  width: 54px;
-  height: 70px;
-  padding: 13px 10px;
-  border: 1px solid #a99bce;
-  border-radius: 5px;
-  background: #302d4b;
-  display: grid;
-  gap: 6px;
-}
-.pipeline-output i {
-  height: 2px;
-  background: #cfc2f0;
-}
-.pipeline-output i:first-child {
-  width: 60%;
-  background: #e3d6ff;
+.project-visual-caption {
+  color: #bacddd;
+  font-size: 12px;
+  line-height: 1.5;
 }
 .project-card-body {
   padding: 30px;
@@ -522,6 +587,13 @@ svg {
 .project-card .body-copy {
   margin-top: 16px;
 }
+.project-heading .eyebrow,
+.project-note .eyebrow {
+  font-size: 11px;
+}
+.project-card .arrow-link {
+  font-size: 14px;
+}
 .project-highlights {
   display: grid;
   gap: 16px;
@@ -530,12 +602,12 @@ svg {
   padding-top: 22px;
 }
 .project-highlights h4 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: #e9e6ff;
 }
 .project-highlights p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.75;
   margin-top: 5px;
@@ -546,7 +618,7 @@ svg {
   padding: 3px 0 3px 14px;
 }
 .project-note > p:last-child {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.75;
   color: var(--muted);
   margin-top: 5px;
@@ -567,7 +639,7 @@ svg {
   padding: 5px 9px;
   border-radius: 5px;
   font-family: ui-monospace, monospace;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.4;
   color: #cbd3ec;
 }
@@ -656,10 +728,29 @@ summary::-webkit-details-marker {
   gap: 24px;
 }
 .research-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
   padding: 30px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--surface);
+}
+.research-card .project-links {
+  margin-top: auto;
+  padding-top: 40px;
+}
+.publication-card .research-role {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #8671b8;
+  border-radius: 6px;
+  background: #403255;
+  color: #f0e8ff;
+  font-weight: 600;
 }
 .publication-card {
   background: linear-gradient(135deg, #302646, var(--surface) 70%);
@@ -667,19 +758,14 @@ summary::-webkit-details-marker {
 }
 .research-top {
   display: flex;
-  justify-content: space-between;
-  gap: 15px;
+  justify-content: flex-end;
+  min-height: 36px;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 }
 .research-top .eyebrow {
-  font-size: 9px;
+  font-size: 11px;
   color: #c2bdd8;
-}
-.research-symbol {
-  color: #cbb7ff;
-  font-family: ui-monospace, monospace;
-  font-size: 24px;
 }
 .research-card h3 {
   font-size: 28px;
@@ -687,7 +773,7 @@ summary::-webkit-details-marker {
   letter-spacing: -0.04em;
 }
 .research-role {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.7;
   color: #d2c3ff;
   margin-top: 10px;
@@ -705,13 +791,13 @@ summary::-webkit-details-marker {
   margin-top: 24px;
 }
 .research-details h4 {
-  font-size: 12px;
+  font-size: 14px;
   color: #e9e6ff;
   margin-bottom: 6px;
   font-weight: 500;
 }
 .research-details p {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.8;
   color: var(--muted);
 }
@@ -913,8 +999,13 @@ summary::-webkit-details-marker {
     border-color: #ac96eb;
     background: #30334f;
   }
+  .research-card:hover {
+    border-color: #bea4f5;
+    background-color: #242a46;
+  }
   .project-card:hover {
-    border-color: #a58bd4;
+    border-color: #bea4f5;
+    background: #242a46;
   }
   .arrow-link:hover,
   .highlights a:hover strong,
@@ -1111,11 +1202,34 @@ html[lang="zh-CN"] .eyebrow {
     gap: 20px;
   }
   .project-visual {
-    height: 150px;
-    padding-inline: 30px;
+    height: auto;
+  }
+  .architecture-visual {
+    padding: 16px;
+  }
+  .architecture-inputs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .architecture-heading {
+    flex-wrap: wrap;
+    gap: 3px 10px;
+  }
+  .architecture-lane {
+    padding: 10px;
+  }
+  .architecture-flow {
+    gap: 15px;
+  }
+  .architecture-node {
+    padding: 7px 4px;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+  .architecture-node:not(:last-child)::after {
+    left: calc(100% + 1px);
   }
   .aftershock-visual {
-    padding: 0;
+    padding: 12px;
   }
   .project-card-body,
   .research-card {
@@ -1128,13 +1242,13 @@ html[lang="zh-CN"] .eyebrow {
     font-size: 15px;
   }
   .project-card .body-copy {
-    font-size: 13px;
+    font-size: 14px;
   }
   .eyebrow {
     font-size: 9px;
   }
   .project-highlights p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .secondary-project summary > span:first-child {
     display: grid;
@@ -1212,5 +1326,23 @@ html[lang="zh-CN"] .eyebrow {
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .vantage-lane .architecture-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .vantage-lane .architecture-node:last-child {
+    grid-column: 1 / -1;
+  }
+  .vantage-lane .architecture-node:nth-child(2)::after {
+    content: "↓";
+    left: 50%;
+    top: calc(100% + 1px);
+    transform: translateX(-50%);
+  }
+  .architecture-node {
+    overflow-wrap: normal;
   }
 }

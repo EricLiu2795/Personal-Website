@@ -43,3 +43,5 @@ Serve that output mounted at `/Personal-Website/`. `next.config.mjs` derives `ba
 - The existing resume URL `/Junkun-Liu-Resume.pdf` is preserved. The October 28 local source was visually checked as one page and copied byte-for-byte; see the review record for provenance.
 
 See [the V2 review record](docs/website-v2-review.md) for evidence, screenshots and limitations. Screenshot/QA artifacts are local under `artifacts/website-refresh/` and excluded from Git.
+
+The [project evidence polish record](docs/project-evidence-polish.md) documents the architecture thumbnail, supplied Aftershock screenshot provenance, accessible full-card links and follow-up QA.
