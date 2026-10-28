@@ -86,9 +86,9 @@ svg {
 }
 .eyebrow {
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   line-height: 1.7;
   text-transform: uppercase;
   color: var(--ember);
@@ -165,7 +165,7 @@ svg {
   gap: 9px;
   align-items: center;
   font-family: ui-monospace, monospace;
-  font-size: 11px;
+  font-size: 12px;
   color: #b1bad6;
 }
 .language-switcher a {
@@ -222,7 +222,7 @@ svg {
   gap: 10px;
   font-family: ui-monospace, monospace;
   color: #d2cce9;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 30px;
@@ -311,7 +311,7 @@ svg {
   margin-left: auto;
   color: #b3bdd8;
   font-family: ui-monospace, monospace;
-  font-size: 10px;
+  font-size: 13px;
 }
 .hero-art {
   position: relative;
@@ -325,7 +325,7 @@ svg {
 }
 .art-caption {
   font-family: ui-monospace, monospace;
-  font-size: 9px;
+  font-size: 12px;
   text-align: center;
   letter-spacing: 0.18em;
   color: #b9b2d6;
@@ -356,7 +356,7 @@ svg {
   border-right: 0;
 }
 .highlights strong {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   font-weight: 500;
 }
@@ -431,7 +431,7 @@ svg {
 }
 .feature-introduction > .eyebrow,
 .spotlight-story > .eyebrow {
-  font-size: 11px;
+  font-size: 12px;
 }
 .feature-introduction h3 {
   font-size: clamp(40px, 4.2vw, 58px);
@@ -493,7 +493,7 @@ svg {
   border-right: 1px solid #6d5f86;
 }
 .effort-heading .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   color: #cfc4e6;
 }
@@ -582,7 +582,7 @@ svg {
   border-radius: 5px;
   padding: 6px 4px;
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.4;
   color: #d4d8ef;
   background: #262b45;
@@ -615,7 +615,7 @@ svg {
   color: #efeaff;
 }
 .architecture-heading > span {
-  font-size: 10px;
+  font-size: 12px;
   color: #c6bbdf;
   text-align: right;
 }
@@ -665,7 +665,7 @@ svg {
   border-style: dashed;
 }
 .architecture-maturity {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
   color: #beb5d7;
   margin-top: 10px;
@@ -694,7 +694,7 @@ svg {
   border-left: 2px solid var(--cyan);
 }
 .spotlight-award .eyebrow {
-  font-size: 11px;
+  font-size: 12px;
   color: #aaebf2;
 }
 .spotlight-award > p:last-child {
@@ -917,7 +917,7 @@ summary::-webkit-details-marker {
   margin-bottom: 16px;
 }
 .research-top .eyebrow {
-  font-size: 11px;
+  font-size: 12px;
   color: #c2bdd8;
 }
 .research-card h3 {
@@ -980,7 +980,7 @@ summary::-webkit-details-marker {
 .date-label {
   display: block;
   font-family: ui-monospace, monospace;
-  font-size: 10px;
+  font-size: 12px;
   color: #bac4df;
   line-height: 1.9;
   margin-top: 14px;
@@ -1075,7 +1075,7 @@ summary::-webkit-details-marker {
 }
 .skills-list h3 {
   font-family: ui-monospace, monospace;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: #d2bfff;
   text-transform: uppercase;
@@ -1133,7 +1133,7 @@ summary::-webkit-details-marker {
   padding-block: 24px 30px;
   margin-top: 65px;
   font-family: ui-monospace, monospace;
-  font-size: 9px;
+  font-size: 12px;
   color: #b4bed8;
   letter-spacing: 0.04em;
 }
@@ -1272,7 +1272,7 @@ html[lang="zh-CN"] .eyebrow {
     min-height: auto;
   }
   .hero-kicker {
-    font-size: 9px;
+    font-size: 12px;
     margin-bottom: 26px;
     letter-spacing: 0.035em;
   }
@@ -1310,8 +1310,12 @@ html[lang="zh-CN"] .eyebrow {
     margin-top: 0;
   }
   .art-caption {
-    font-size: 8px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
     margin-top: -20px;
+  }
+  .art-caption span {
+    margin-inline: 7px;
   }
   .highlights {
     grid-template-columns: 1fr;
@@ -1329,7 +1333,7 @@ html[lang="zh-CN"] .eyebrow {
     border-bottom: 0;
   }
   .highlights strong {
-    font-size: 12px;
+    font-size: 13px;
   }
   .section-space {
     padding-block: 64px;
@@ -1347,7 +1351,7 @@ html[lang="zh-CN"] .eyebrow {
     text-align: left;
     margin-top: 12px;
     max-width: 100%;
-    font-size: 11px;
+    font-size: 12px;
   }
   .research-grid {
     grid-template-columns: 1fr;
@@ -1381,14 +1385,14 @@ html[lang="zh-CN"] .eyebrow {
     padding: 24px;
   }
   .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
   }
   .secondary-project summary > span:first-child {
     display: grid;
     gap: 6px;
   }
   .secondary-project summary .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
   }
   .secondary-columns {
     grid-template-columns: 1fr;
@@ -1440,7 +1444,7 @@ html[lang="zh-CN"] .eyebrow {
   .footer-meta {
     flex-direction: column;
     gap: 9px;
-    font-size: 8px;
+    font-size: 12px;
     margin-top: 40px;
   }
   html[lang="zh-CN"] .hero h1 {
@@ -1548,7 +1552,7 @@ html[lang="zh-CN"] .eyebrow {
   }
   .feature-introduction > .eyebrow,
   .spotlight-story > .eyebrow {
-    font-size: 10px;
+    font-size: 12px;
   }
   .feature-introduction h3 {
     font-size: 40px;
@@ -1575,7 +1579,7 @@ html[lang="zh-CN"] .eyebrow {
     font-size: 22px;
   }
   .effort-heading .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
   }
   .spotlight-evidence,
   .spotlight-story {
@@ -1595,7 +1599,7 @@ html[lang="zh-CN"] .eyebrow {
     align-self: stretch;
   }
   .spotlight-award .eyebrow {
-    font-size: 10px;
+    font-size: 12px;
   }
   .spotlight-facts {
     gap: 16px;
