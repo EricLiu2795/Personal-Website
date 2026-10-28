@@ -72,3 +72,11 @@ Browser checks used isolated desktop Chrome with resized mobile viewports; they 
 | ZH mobile | [Full page](../artifacts/website-refresh/before/zh-mobile.png) | [Full page](../artifacts/website-refresh/after/zh-mobile.png) / [Hero](../artifacts/website-refresh/after/zh-mobile-hero.png) |
 
 The screenshots are local artifacts, not committed website assets. Final after captures come from the production static export, not the development server.
+
+## Follow-up: GPA and brightness
+
+- Removed GPA from both English and Chinese website education copy (local commit `a6ccc33`). The supplied resume PDF was not edited.
+- Brightened the base navy from `#0b0b16` to `#14172b`, raised card surfaces to `#1d223a`, and increased text/border contrast. Added a restrained atmospheric background and brighter violet/cyan SVG strokes.
+- Primary buttons now use a brighter lavender with dark navy text. Measured contrast is 6.28:1 at rest and 7.99:1 on hover.
+- Rebuilt both root and GitHub Pages static exports successfully, including their lint/type validation. Focused Chrome QA found no overflow at 320/390/768/1440px, no console/page errors, and working language/mobile menu navigation. Computed text-color scans found no failures; gradient backgrounds remain approximations.
+- Updated local screenshots: [desktop](../artifacts/website-refresh/brightness/after/en-desktop-hero.png), [mobile](../artifacts/website-refresh/brightness/after/en-mobile-hero.png). Comparison baseline is in `artifacts/website-refresh/brightness/before/`.

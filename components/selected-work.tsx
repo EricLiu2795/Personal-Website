@@ -1,4 +1,4 @@
-﻿import type { PortfolioContent, WorkProject } from "@/lib/content";
+import type { PortfolioContent, WorkProject } from "@/lib/content";
 
 function ProjectIllustration({ kind }: { kind: "launchstack" | "aftershock" }) {
   return (
@@ -24,7 +24,7 @@ function ProjectIllustration({ kind }: { kind: "launchstack" | "aftershock" }) {
         </>
       ) : (
         <svg viewBox="0 0 500 190" fill="none">
-          <g stroke="#647b91" strokeOpacity=".23">
+          <g stroke="#9fb8d1" strokeOpacity=".35">
             <path d="M0 25L500 153M0 102L500 46M34 190L197 0M140 190L337 0M341 190L455 0M0 161L500 100M0 56L500 183" />
             <path d="M0 30H500M0 85H500M0 140H500M90 0V190M215 0V190M340 0V190M465 0V190" />
           </g>
@@ -39,7 +39,7 @@ function ProjectIllustration({ kind }: { kind: "launchstack" | "aftershock" }) {
           <circle cx="250" cy="91" r="22" stroke="#72ced6" strokeOpacity=".3" />
           <path
             d="M85 139L157 127L203 83L250 91L329 72L407 44"
-            stroke="#76cfdb"
+            stroke="#9aeaf2"
             strokeWidth="2"
             strokeDasharray="5 5"
           />

@@ -17,12 +17,12 @@ function ComputationalMark() {
             y2="400"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#74ddf3" />
-            <stop offset=".45" stopColor="#8275ff" />
-            <stop offset="1" stopColor="#c49dff" />
+            <stop stopColor="#9af0ff" />
+            <stop offset=".45" stopColor="#b0a0ff" />
+            <stop offset="1" stopColor="#dfbbff" />
           </linearGradient>
           <radialGradient id="halo">
-            <stop stopColor="#7460ef" stopOpacity=".22" />
+            <stop stopColor="#7460ef" stopOpacity=".32" />
             <stop offset="1" stopColor="#7460ef" stopOpacity="0" />
           </radialGradient>
           <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
@@ -30,7 +30,7 @@ function ComputationalMark() {
           </filter>
         </defs>
         <circle cx="260" cy="260" r="250" fill="url(#halo)" />
-        <g stroke="#7163b9" strokeOpacity=".2">
+        <g stroke="#7163b9" strokeOpacity=".35">
           <circle cx="260" cy="260" r="193" />
           <circle cx="260" cy="260" r="147" strokeDasharray="2 9" />
           <path d="M30 260H490M260 30V490" strokeDasharray="3 9" />
@@ -40,7 +40,7 @@ function ComputationalMark() {
             <path
               key={i}
               d={`M ${96 + i * 7} ${115 + i * 3} C ${430 - i * 3} ${45 + i * 8}, ${93 + i * 5} ${449 - i * 5}, ${423 - i * 6} ${394 + i * 2}`}
-              strokeOpacity={0.14 + i * 0.035}
+              strokeOpacity={0.24 + i * 0.04}
             />
           ))}
           <path
@@ -49,7 +49,7 @@ function ComputationalMark() {
             strokeLinecap="round"
             strokeLinejoin="round"
             filter="url(#glow)"
-            opacity=".65"
+            opacity=".8"
           />
           <path
             d="M226 166V297C226 341 175 353 153 318M294 166V334H369"
@@ -58,7 +58,7 @@ function ComputationalMark() {
             strokeLinejoin="round"
           />
         </g>
-        <g fill="#a9a2ff">
+        <g fill="#cec3ff">
           <circle cx="111" cy="137" r="4" />
           <circle cx="413" cy="378" r="4" />
           <circle cx="431" cy="171" r="2" />
@@ -66,7 +66,7 @@ function ComputationalMark() {
         </g>
         <path
           d="M77 96V77H96M424 77H443V96M443 424V443H424M96 443H77V424"
-          stroke="#7573a0"
+          stroke="#aba2ce"
           strokeOpacity=".55"
         />
       </svg>
