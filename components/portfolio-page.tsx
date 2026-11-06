@@ -1,79 +1,27 @@
 import type { PortfolioContent } from "@/lib/content";
 import SiteNavigation from "./site-navigation";
-import SelectedWork from "./selected-work";
+import { HackathonSpotlight, LaunchStackFeature } from "./selected-work";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-function ComputationalMark() {
+function TrustPanel({ trust }: { trust: PortfolioContent["hero"]["trust"] }) {
   return (
-    <div className="hero-art" aria-hidden="true">
-      <svg viewBox="0 0 520 520" fill="none" className="computational-mark">
-        <defs>
-          <linearGradient
-            id="field"
-            x1="100"
-            y1="100"
-            x2="420"
-            y2="400"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#9af0ff" />
-            <stop offset=".45" stopColor="#b0a0ff" />
-            <stop offset="1" stopColor="#dfbbff" />
-          </linearGradient>
-          <radialGradient id="halo">
-            <stop stopColor="#7460ef" stopOpacity=".32" />
-            <stop offset="1" stopColor="#7460ef" stopOpacity="0" />
-          </radialGradient>
-          <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
-            <feGaussianBlur stdDeviation="9" />
-          </filter>
-        </defs>
-        <circle cx="260" cy="260" r="250" fill="url(#halo)" />
-        <g stroke="#7163b9" strokeOpacity=".35">
-          <circle cx="260" cy="260" r="193" />
-          <circle cx="260" cy="260" r="147" strokeDasharray="2 9" />
-          <path d="M30 260H490M260 30V490" strokeDasharray="3 9" />
-        </g>
-        <g stroke="url(#field)">
-          {Array.from({ length: 14 }, (_, i) => (
-            <path
-              key={i}
-              d={`M ${96 + i * 7} ${115 + i * 3} C ${430 - i * 3} ${45 + i * 8}, ${93 + i * 5} ${449 - i * 5}, ${423 - i * 6} ${394 + i * 2}`}
-              strokeOpacity={0.24 + i * 0.04}
-            />
-          ))}
-          <path
-            d="M226 166V297C226 341 175 353 153 318M294 166V334H369"
-            strokeWidth="17"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            filter="url(#glow)"
-            opacity=".8"
-          />
-          <path
-            d="M226 166V297C226 341 175 353 153 318M294 166V334H369"
-            strokeWidth="7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-        <g fill="#cec3ff">
-          <circle cx="111" cy="137" r="4" />
-          <circle cx="413" cy="378" r="4" />
-          <circle cx="431" cy="171" r="2" />
-          <circle cx="117" cy="389" r="2" />
-        </g>
-        <path
-          d="M77 96V77H96M424 77H443V96M443 424V443H424M96 443H77V424"
-          stroke="#aba2ce"
-          strokeOpacity=".55"
-        />
-      </svg>
-      <p className="art-caption">
-        SOFTWARE <span>×</span> SYSTEMS <span>×</span> RESEARCH
-      </p>
-    </div>
+    <figure className="trust-panel">
+      <figcaption className="trust-label">{trust.label}</figcaption>
+      <ol className="trust-trails">
+        {trust.trails.map((trail) => (
+          <li key={trail.project}>
+            <h2>{trail.project}</h2>
+            <ol className="trust-steps">
+              {trail.steps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+          </li>
+        ))}
+      </ol>
+      <p className="trust-caption">{trust.caption}</p>
+    </figure>
   );
 }
 
@@ -138,7 +86,7 @@ export default function PortfolioPage({
               <span className="hero-location">Baltimore, MD</span>
             </div>
           </div>
-          <ComputationalMark />
+          <TrustPanel trust={content.hero.trust} />
         </section>
         <div className="section-shell">
           <nav className="highlights" aria-label={content.snapshotLabel}>
@@ -155,7 +103,7 @@ export default function PortfolioPage({
               ))}
           </nav>
         </div>
-        <SelectedWork work={content.work} />
+        <LaunchStackFeature work={content.work} />
         <section
           id="research"
           className="section-shell section-space"
@@ -164,7 +112,7 @@ export default function PortfolioPage({
           <div className="section-heading">
             <div>
               <p className="eyebrow">
-                03 / {zh ? "探索与验证" : "Investigation & validation"}
+                02 / {zh ? "探索与验证" : "Investigation & validation"}
               </p>
               <h2 id="research-title">
                 {zh ? "研究与论文" : "Research & publications"}
@@ -213,6 +161,7 @@ export default function PortfolioPage({
             ))}
           </div>
         </section>
+        <HackathonSpotlight work={content.work} />
         <section
           id="experience"
           className="section-shell section-space"

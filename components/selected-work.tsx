@@ -23,7 +23,7 @@ function ProjectCTA({
   );
 }
 
-function LaunchStackFeature({ work }: { work: WorkContent }) {
+export function LaunchStackFeature({ work }: { work: WorkContent }) {
   const project = work.launchstack;
   return (
     <section
@@ -85,7 +85,7 @@ function LaunchStackFeature({ work }: { work: WorkContent }) {
           ))}
         </div>
       </a>
-      <details className="technical-design">
+      <details className="technical-design" open>
         <summary>
           <span>{work.technicalDesignLabel}</span>
           <span className="disclosure-plus" aria-hidden="true">
@@ -96,12 +96,32 @@ function LaunchStackFeature({ work }: { work: WorkContent }) {
           <p>{work.technicalDesignDescription}</p>
           <ProjectArchitectureDiagram content={work.architecture} />
         </div>
+        <div className="design-decisions">
+          <h3>{work.decisions.label}</h3>
+          <ol>
+            {work.decisions.items.map((decision) => (
+              <li key={decision.choice}>
+                <h4>{decision.choice}</h4>
+                <dl>
+                  <div>
+                    <dt>{work.decisions.whyLabel}</dt>
+                    <dd>{decision.why}</dd>
+                  </div>
+                  <div>
+                    <dt>{work.decisions.limitLabel}</dt>
+                    <dd>{decision.limit}</dd>
+                  </div>
+                </dl>
+              </li>
+            ))}
+          </ol>
+        </div>
       </details>
     </section>
   );
 }
 
-function HackathonSpotlight({ work }: { work: WorkContent }) {
+export function HackathonSpotlight({ work }: { work: WorkContent }) {
   const project = work.aftershock;
   const spotlight = work.spotlight;
   return (
@@ -215,14 +235,5 @@ function SecondaryProject({ action }: { action: WorkContent["action"] }) {
         </a>
       </div>
     </details>
-  );
-}
-
-export default function SelectedWork({ work }: { work: WorkContent }) {
-  return (
-    <>
-      <LaunchStackFeature work={work} />
-      <HackathonSpotlight work={work} />
-    </>
   );
 }

@@ -1,6 +1,6 @@
 ﻿# Junkun Liu — Personal Website V2
 
-A bilingual software engineering portfolio built with Next.js 14, React, TypeScript and Tailwind CSS. The dark navy/violet design uses original static SVG artwork and no additional runtime dependencies.
+A bilingual software engineering portfolio built with Next.js 14, React, TypeScript and Tailwind CSS. The dark navy/violet design uses CSS only and no additional runtime dependencies.
 
 ## Local development
 
@@ -36,9 +36,9 @@ Serve that output mounted at `/Personal-Website/`. `next.config.mjs` derives `ba
 
 - `/` and `/zh/` share the server-rendered `PortfolioPage` and typed bilingual content in `lib/content.ts`.
 - The only client component is the accessible mobile navigation. Project and coursework disclosures use native `details` elements.
-- Order: hero, LaunchStack Featured Work, Aftershock Hackathon Spotlight, research/publications, experience/teaching, about/skills, contact.
-- LaunchStack distinguishes Founder Weekly Review reporting from Vantage's broader, partially integrated technical design. Its optional architecture disclosure is independent of the main project link. Aftershock has a dedicated dashboard-and-award presentation; Personal Action Agent remains a secondary disclosure.
-- Mystra lists ICSE 2027 acceptance, second authorship and the limited personal contribution. Genesis describes scientific-workload reconstruction and CPU/GPU validation.
+- Order: hero, LaunchStack Featured Work, research/publications, Aftershock Hackathon Spotlight, experience/teaching, about/skills, contact.
+- LaunchStack distinguishes the merged Founder Weekly Review pipeline from pending materiality work and Vantage's integration branch. Its Technical design section opens by default and lists key decisions with their limits. Aftershock has a dedicated dashboard-and-award presentation; Personal Action Agent remains a secondary disclosure.
+- Mystra lists ICSE 2027 acceptance, second authorship and the personal contribution. Genesis describes frozen benchmarks for AI-generated scientific code, without unpublished results.
 - Metadata includes localized titles/descriptions, canonical URLs, language alternates and OpenGraph. No web fonts, remote artwork, Figma runtime, WebGL or animation framework are required.
 - The existing resume URL `/Junkun-Liu-Resume.pdf` is preserved. The October 28 local source was visually checked as one page and copied byte-for-byte; see the review record for provenance.
 

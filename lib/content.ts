@@ -65,6 +65,11 @@ export type PortfolioContent = {
     github: string;
     linkedin: string;
     email: string;
+    trust: {
+      label: string;
+      caption: string;
+      trails: Array<{ project: string; steps: [string, string, string] }>;
+    };
   };
   snapshotLabel: string;
   snapshot: SnapshotItem[];
@@ -76,6 +81,12 @@ export type PortfolioContent = {
     navigationLabel: string;
     technicalDesignLabel: string;
     technicalDesignDescription: string;
+    decisions: {
+      label: string;
+      whyLabel: string;
+      limitLabel: string;
+      items: Array<{ choice: string; why: string; limit: string }>;
+    };
     moreProjectsLabel: string;
     spotlight: {
       index: string;
@@ -181,12 +192,12 @@ export const englishContent: PortfolioContent = {
   },
   links: sharedLinks,
   hero: {
-    eyebrow: "Software Engineering × AI Systems × Research",
+    eyebrow: "Software Systems × AI Reliability × Security",
     greeting: "Hi, I'm Junkun.",
     exploreWork: "Explore My Work",
-    headline: "Building intelligent, reliable software.",
+    headline: "I work on whether software and AI can be trusted.",
     description:
-      "Computer Science and Applied Mathematics & Statistics student at Johns Hopkins University. I work on AI-enabled software, systems design, engineering leadership, and research.",
+      "CS and Applied Math student at Johns Hopkins. I investigated why browser agents fail at StepFun, traced untrusted input to code-execution sinks for an ICSE paper, and now build evidence pipelines at LaunchStack and benchmarks for AI-written scientific code.",
     degree: "Computer Science + Applied Mathematics & Statistics",
     university: "Johns Hopkins University",
     meta: "Expected May 2028 · Baltimore, MD",
@@ -194,6 +205,24 @@ export const englishContent: PortfolioContent = {
     github: "GitHub",
     linkedin: "LinkedIn",
     email: "Email",
+    trust: {
+      label: "How I check the work",
+      caption: "Different systems, same question: what can you actually trust?",
+      trails: [
+        {
+          project: "Mystra",
+          steps: ["Untrusted input", "Taint propagation", "Code-execution sink"],
+        },
+        {
+          project: "Founder Weekly Review",
+          steps: ["Document change", "Frozen evidence", "Cited claim"],
+        },
+        {
+          project: "Genesis Mission",
+          steps: ["Agent-written code", "Reference check", "Pass or fail"],
+        },
+      ],
+    },
   },
   snapshotLabel: "Professional snapshot",
   snapshot: [
@@ -214,7 +243,7 @@ export const englishContent: PortfolioContent = {
     },
     {
       label: "Recognition",
-      value: "Aftershock · Bloomberg track winner",
+      value: "Aftershock · 1st of 27, Bloomberg track",
       id: "aftershock",
     },
   ],
@@ -229,8 +258,9 @@ export const englishContent: PortfolioContent = {
         role: "Tech Lead",
         note: "Previously Product Engineering Intern, Spring 2026.",
         bullets: [
-          "Lead technical design, engineering planning, cross-team integration, and code / PR review for the Founder Operating System and Vantage.",
-          "Translate product requirements into implementable workflows, from evidence-grounded Founder Weekly Review reports to Vantage's broader decision-support design; some Vantage components remain proposed or partially integrated.",
+          "Lead a three-person team on the Founder Operating System, owning architecture, contracts, code review, and integration.",
+          "Built Founder Weekly Review and designed Vantage's role-aware decision-support pipeline. The materiality layer and Vantage integration PRs are still open.",
+          "Earlier shipped batch document upload, Vercel Blob storage, and provider-aware LLM routing for OpenAI and Ollama.",
         ],
         dates: "Jun 2026 — present",
         location: "Baltimore / Remote",
@@ -241,7 +271,8 @@ export const englishContent: PortfolioContent = {
         eyebrow: "Algorithm Engineer Intern",
         role: "Algorithm Engineer Intern",
         bullets: [
-          "Explored and evaluated LLM-based browser agents for multi-step tasks, diagnosing navigation loops, tool misuse, and failures under dynamic DOM changes.",
+          "Evaluated Browser-Use agents on multi-step WebGames tasks and worked on integrating SkillWeaver skills.",
+          "Used trace analysis to diagnose navigation loops, ambiguous elements, tool misuse, and changing-DOM failures.",
         ],
         dates: "Jun — Aug 2025",
         location: "Beijing, China",
@@ -249,16 +280,40 @@ export const englishContent: PortfolioContent = {
     ],
   },
   work: {
-    index: "01 / Engineering leadership",
+    index: "01 / Engineering",
     label: "Systems design · Engineering leadership",
     title: "Featured Work",
     navigationLabel: "Selected project shortcuts",
-    technicalDesignLabel: "Technical Design",
+    technicalDesignLabel: "Technical design & trade-offs",
     technicalDesignDescription:
-      "Two connected workflows with different scopes. Vantage combines implemented, partially integrated, and proposed components.",
+      "Founder Weekly Review's core pipeline is merged, and its materiality layer is pending merge. Vantage runs on a tested integration branch, with authenticated end-to-end validation still in progress.",
+    decisions: {
+      label: "Decisions I would defend, and where they break",
+      whyLabel: "Why",
+      limitLabel: "Where it breaks",
+      items: [
+        {
+          choice: "Version-aware factual diffs over raw change flags",
+          why: "Each reported change traces back to before-and-after text. “Q3” → “Q4” counts as a deadline change; “third quarter” → “Q3” does not.",
+          limit:
+            "Semantic changes can slip past deterministic matching, so ambiguous changes go to a bounded LLM analyzer.",
+        },
+        {
+          choice: "Immutable snapshots and an outbox over synchronous generation",
+          why: "Retries stay safe, and every report keeps its provenance.",
+          limit: "It adds overhead a simple synchronous workflow does not need.",
+        },
+        {
+          choice: "Required role context before optional RAG",
+          why: "Evidence a role must see cannot be crowded out by search results.",
+          limit:
+            "Required sources can go stale or take up too much of the context budget.",
+        },
+      ],
+    },
     moreProjectsLabel: "More Projects",
     spotlight: {
-      index: "02 / Hackathon",
+      index: "03 / Hackathon",
       title: "Hackathon Spotlight",
       label: "An award-winning earthquake-response prototype.",
       teamValue: "4",
@@ -272,32 +327,28 @@ export const englishContent: PortfolioContent = {
     demoImageCaption: "Prototype demo · Caraballeda rescue operations",
     architecture: {
       description:
-        "Founder Weekly Review turns documents, GitHub activity, customer signals and team context into evidence-grounded weekly reports. The broader Vantage design connects role-aware retrieval to AI reports, human review, decisions and commitments; maturity varies by component.",
-      inputs: [
-        "Documents",
-        "GitHub activity",
-        "Customer signals",
-        "Team context",
-      ],
+        "Founder Weekly Review turns document versions, customer feedback and founder context into cited weekly reports. Vantage adds role and company context, evidence retrieval, human review and tracked commitments.",
+      inputs: ["Document versions", "Customer feedback", "Founder context"],
       weekly: {
         title: "Founder Weekly Review",
-        status: "Reporting workflow",
+        status: "Core pipeline merged",
         steps: [
-          "Evidence processing & retrieval",
-          "Source-grounded weekly report",
+          "Evidence collection",
+          "Immutable snapshot",
+          "Generation & citation checks",
         ],
       },
       vantage: {
         title: "Vantage",
-        status: "Broader technical design",
+        status: "Integration branch & demo",
         steps: [
-          "Role-aware context & retrieval",
-          "AI-assisted reports",
-          "Human review, decisions & commitments",
+          "Role & company context",
+          "Evidence retrieval",
+          "Human review & commitments",
         ],
       },
       maturity:
-        "Vantage: implemented, partially integrated & proposed components",
+        "Vantage: tested modules and a portable demo; authenticated end-to-end validation in progress",
     },
     action: {
       kicker: "Independent AI Systems Project · Jun 2026 — Present",
@@ -349,28 +400,27 @@ export const englishContent: PortfolioContent = {
     launchstack: {
       name: "LaunchStack",
       kicker: "Tech Lead · Founder Operating System",
-      title: "From organizational evidence to better decisions.",
+      title: "From company documents to decisions a founder can check.",
       description:
-        "I translate product requirements into pipeline architecture and engineering plans, coordinate integrations across the team, and review code and PRs for implementation quality.",
+        "I lead a three-person team on the Founder Operating System, owning architecture, contracts, code review, and integration. LaunchStack is open source, with 890+ GitHub stars.",
       highlights: [
         {
-          eyebrow: "Weekly reporting workflow",
+          eyebrow: "Built · core pipeline merged",
           label: "Founder Weekly Review",
-          text: "Processes fragmented documents, GitHub activity, customer feedback, and team context into evidence-grounded weekly reports with traceable sources.",
-          detail:
-            "Evidence processing · Structured reporting · Source traceability",
+          text: "Collects evidence from document versions, customer feedback, and founder input, freezes it into an immutable snapshot, generates the report asynchronously, and validates citations against that snapshot.",
+          detail: "Materiality layer pending merge",
         },
         {
-          eyebrow: "Broader decision-support design",
+          eyebrow: "Designed · integration branch",
           label: "Vantage",
-          text: "A broader decision-support design connecting role-aware context, evidence retrieval, AI-generated reports, human review, and tracked commitments.",
-          detail: "Partially integrated · Further components proposed",
+          text: "A role-aware decision-support pipeline from company context and evidence retrieval through human review to tracked commitments. I designed it and coordinated the frontend and retrieval work.",
+          detail: "Tested integration branch · Portable demo",
         },
       ],
-      tags: ["Technical design", "RAG", "Integration", "Code review"],
+      tags: ["Architecture", "PostgreSQL", "Inngest", "Idempotency", "Code review"],
       sideLabel: "Design & implementation",
       sideText:
-        "Parts of Vantage remain proposed or partially integrated; the complete design is not yet shipped.",
+        "Vantage's integration PRs are open, and authenticated end-to-end validation is in progress.",
       links: [
         {
           label: "View on GitHub",
@@ -383,7 +433,7 @@ export const englishContent: PortfolioContent = {
       kicker: "Project Lead · HopHacks 2026",
       title: "A shared operational picture for earthquake response.",
       description:
-        "An AI-assisted earthquake-response prototype that fuses conflicting multimodal reports into shared operational state, coordinates search and rescue, and dynamically reroutes teams over real road networks.",
+        "An AI-assisted earthquake-response prototype that fuses conflicting multimodal reports into shared operational state, coordinates search and rescue, and dynamically reroutes teams over real road networks, with human approval for mission changes.",
       tags: ["AI systems", "multimodal reports", "coordination", "routing"],
       sideLabel: "1st place · Bloomberg track",
       sideText:
@@ -397,8 +447,8 @@ export const englishContent: PortfolioContent = {
     },
   },
   research: {
-    index: "03 / Research",
-    label: "Research & publications",
+    index: "02 / Research",
+    label: "Security research · Benchmarks for AI-written code",
     entries: [
       {
         id: "taint-analysis",
@@ -417,7 +467,7 @@ export const englishContent: PortfolioContent = {
           },
           {
             label: "My contribution",
-            text: "Reproduced and evaluated real-world CVE cases in web applications and assisted with cross-runtime evaluation.",
+            text: "Reproduced 4+ of the paper's 19 real-world vulnerabilities as full-application CVE validations, and helped port and evaluate the engine across CPython, SpiderMonkey, and Chromium.",
           },
         ],
       },
@@ -426,7 +476,7 @@ export const englishContent: PortfolioContent = {
         title: "Genesis Mission",
         role: "Undergraduate Researcher · Prof. Ziyang Li",
         context:
-          "Research on reliable AI-generated scientific computing software.",
+          "DOE-backed research on benchmarks for AI-generated scientific code.",
         dates: "Sep 2026 — present",
         links: [
           {
@@ -436,12 +486,12 @@ export const englishContent: PortfolioContent = {
         ],
         items: [
           {
-            label: "Reconstruction",
-            text: "Reconstruct computational-physics workloads and configure CUDA environments to make scientific code reproducible and testable.",
+            label: "Benchmark",
+            text: "Frozen code-synthesis tasks built from research software, measuring whether coding agents produce compilable, numerically correct, contract-compliant code.",
           },
           {
-            label: "Validation",
-            text: "Compare CPU/GPU numerical results against trusted references, documenting discrepancies and the limits of each validation run.",
+            label: "My work",
+            text: "I designed the orchestration and own the frozen-benchmark stage and its independent validation, including remote GPU evaluation against trusted numerical references.",
           },
         ],
       },
@@ -490,11 +540,11 @@ export const englishContent: PortfolioContent = {
       {
         label: "Systems / Research",
         value:
-          "Linux / WSL, CUDA, SQLite, Docker, Dynamic Taint Analysis, CVE Validation",
+          "Linux / WSL, CUDA, Docker, AWS, Inngest, Dynamic Taint Analysis, CVE Validation",
       },
       {
         label: "Web / Data",
-        value: "React, Next.js, Node.js, PostgreSQL, Git, AWS",
+        value: "React, Next.js, Node.js, PostgreSQL / pgvector, SQLite, Git",
       },
     ],
   },
@@ -527,12 +577,12 @@ export const chineseContent: PortfolioContent = {
   },
   links: sharedLinks,
   hero: {
-    eyebrow: "软件工程 × AI 系统 × 研究",
+    eyebrow: "软件系统 × AI 可靠性 × 安全",
     greeting: "你好，我是峻锟。",
     exploreWork: "探索我的项目",
-    headline: "构建智能、可靠的软件。",
+    headline: "我关心软件和 AI 的结果到底能不能信。",
     description:
-      "约翰斯·霍普金斯大学计算机科学与应用数学及统计学本科生，专注于 AI 驱动的软件、系统设计、工程领导力与研究。",
+      "约翰斯·霍普金斯大学计算机与应用数学本科生。我在 StepFun 排查过浏览器 Agent 为什么失败，为一篇 ICSE 论文追踪过不可信输入如何到达代码执行点，现在在 LaunchStack 做证据流水线，也在为 AI 写的科学代码做 benchmark。",
     degree: "计算机科学 + 应用数学与统计学",
     university: "约翰斯·霍普金斯大学",
     meta: "预计 2028 年 5 月毕业 · Baltimore, MD",
@@ -540,6 +590,24 @@ export const chineseContent: PortfolioContent = {
     github: "GitHub",
     linkedin: "LinkedIn",
     email: "邮箱",
+    trust: {
+      label: "我怎样检查结果",
+      caption: "系统不同，问题相同：哪些结果真的可信？",
+      trails: [
+        {
+          project: "Mystra",
+          steps: ["不可信输入", "污点传播", "代码执行点"],
+        },
+        {
+          project: "Founder Weekly Review",
+          steps: ["文档变化", "冻结证据", "带引用的结论"],
+        },
+        {
+          project: "Genesis Mission",
+          steps: ["Agent 写的代码", "参考结果校验", "通过或失败"],
+        },
+      ],
+    },
   },
   snapshotLabel: "职业概览",
   snapshot: [
@@ -552,7 +620,7 @@ export const chineseContent: PortfolioContent = {
     { label: "研究", value: "Genesis Mission · 本科研究员", id: "research" },
     {
       label: "获奖",
-      value: "Aftershock · Bloomberg 赛道冠军",
+      value: "Aftershock · Bloomberg 赛道第一（共 27 队）",
       id: "aftershock",
     },
   ],
@@ -567,8 +635,9 @@ export const chineseContent: PortfolioContent = {
         role: "Tech Lead",
         note: "此前任 Product Engineering Intern（2026 年春季）。",
         bullets: [
-          "负责 Founder Operating System 与 Vantage 的技术设计、工程规划、跨团队集成，以及代码与 PR 审查。",
-          "将产品需求转化为可实施的工作流，从有证据支撑的 Founder Weekly Review 周报，到 Vantage 的决策支持系统设计；Vantage 的部分组件仍处于提案或部分集成阶段。",
+          "带领三人团队负责 Founder Operating System，主导架构、接口契约、代码审查与集成。",
+          "构建 Founder Weekly Review，并设计 Vantage 的角色感知决策支持流水线。Materiality 层和 Vantage 集成 PR 仍未合并。",
+          "早期交付了批量文档上传、Vercel Blob 存储，以及面向 OpenAI 和 Ollama 的 LLM 路由。",
         ],
         dates: "2026 年 6 月 — 至今",
         location: "Baltimore / Remote",
@@ -579,7 +648,8 @@ export const chineseContent: PortfolioContent = {
         eyebrow: "Algorithm Engineer Intern",
         role: "Algorithm Engineer Intern",
         bullets: [
-          "探索并评测面向多步任务的 LLM 浏览器 Agent，分析导航循环、工具误用，以及动态 DOM 变化下的故障。",
+          "在多步 WebGames 任务上评测 Browser-Use Agent，并参与集成 SkillWeaver skills。",
+          "通过 trace 分析定位导航循环、元素歧义、工具误用和 DOM 变化引起的失败。",
         ],
         dates: "2025 年 6 月 — 8 月",
         location: "Beijing, China",
@@ -587,16 +657,38 @@ export const chineseContent: PortfolioContent = {
     ],
   },
   work: {
-    index: "01 / 工程领导力",
+    index: "01 / 工程",
     label: "系统设计 · 工程领导力",
     title: "精选工作",
     navigationLabel: "精选项目快捷导航",
-    technicalDesignLabel: "技术设计",
+    technicalDesignLabel: "技术设计与取舍",
     technicalDesignDescription:
-      "两个相互关联、范围不同的工作流。Vantage 包含已实现、部分集成与规划中的组件。",
+      "Founder Weekly Review 的核心流水线已合并，materiality 层等待合并。Vantage 目前是经过测试的集成分支，带身份认证的端到端验证仍在进行。",
+    decisions: {
+      label: "我愿意辩护的决定，以及它们的边界",
+      whyLabel: "为什么",
+      limitLabel: "局限",
+      items: [
+        {
+          choice: "用区分版本的事实差异，而不是原始改动标记",
+          why: "每条变化都能追溯到改动前后的原文。“Q3”→“Q4”算截止日期变化，“third quarter”→“Q3”不算。",
+          limit: "语义变化可能绕过确定性匹配，所以有歧义的改动会交给调用受限的 LLM 分析器。",
+        },
+        {
+          choice: "用不可变快照和 outbox，而不是同步生成",
+          why: "重试是安全的，每份报告也都保留来源。",
+          limit: "对简单的同步流程来说，这是不必要的开销。",
+        },
+        {
+          choice: "先放必需的角色上下文，再放可选的 RAG",
+          why: "角色必须看到的证据不会被搜索结果挤掉。",
+          limit: "必需来源可能过时，也可能占用过多上下文预算。",
+        },
+      ],
+    },
     moreProjectsLabel: "更多项目",
     spotlight: {
-      index: "02 / 黑客松",
+      index: "03 / 黑客松",
       title: "黑客松亮点",
       label: "获奖的地震响应原型。",
       teamValue: "4",
@@ -610,23 +702,19 @@ export const chineseContent: PortfolioContent = {
     demoImageCaption: "原型演示 · Caraballeda 救援行动",
     architecture: {
       description:
-        "Founder Weekly Review 将文档、GitHub 动态、客户信号与团队上下文转为有来源依据的每周报告。Vantage 的整体设计连接角色上下文检索、AI 报告、人工审阅、决策与承诺追踪，各组件成熟度不同。",
-      inputs: ["文档", "GitHub 动态", "客户信号", "团队上下文"],
+        "Founder Weekly Review 将文档版本、客户反馈与创始人上下文转为带引用的每周报告。Vantage 在此基础上加入角色与公司上下文、证据检索、人工审阅和承诺追踪。",
+      inputs: ["文档版本", "客户反馈", "创始人上下文"],
       weekly: {
         title: "Founder Weekly Review",
-        status: "每周报告流程",
-        steps: ["证据处理与检索", "有来源依据的每周报告"],
+        status: "核心流水线已合并",
+        steps: ["证据收集", "不可变快照", "生成与引用校验"],
       },
       vantage: {
         title: "Vantage",
-        status: "整体技术设计",
-        steps: [
-          "角色上下文与证据检索",
-          "AI 辅助报告",
-          "人工审阅、决策与承诺追踪",
-        ],
+        status: "集成分支与演示",
+        steps: ["角色与公司上下文", "证据检索", "人工审阅与承诺追踪"],
       },
-      maturity: "Vantage：包含已实现、部分集成与规划中的组件",
+      maturity: "Vantage：已有经过测试的模块和便携演示，带身份认证的端到端验证仍在进行",
     },
     action: {
       kicker: "独立 AI 系统项目 · 2026 年 6 月 — 至今",
@@ -675,27 +763,27 @@ export const chineseContent: PortfolioContent = {
     launchstack: {
       name: "LaunchStack",
       kicker: "Tech Lead · Founder Operating System",
-      title: "从组织证据，到更有依据的决策。",
+      title: "从公司文档，到创始人能核对的决策。",
       description:
-        "将产品需求转化为流水线架构与工程计划，协调跨团队集成，并通过代码与 PR 审查把关实施质量。",
+        "我带领三人团队负责 Founder Operating System，主导架构、接口契约、代码审查与集成。LaunchStack 是开源项目，GitHub 上有 890+ star。",
       highlights: [
         {
-          eyebrow: "每周报告工作流",
+          eyebrow: "已构建 · 核心流水线已合并",
           label: "Founder Weekly Review",
-          text: "将分散的文档、GitHub 活动、客户反馈和团队上下文处理为有证据支撑、可追溯来源的每周报告。",
-          detail: "证据处理 · 结构化报告 · 来源追溯",
+          text: "从文档版本、客户反馈和创始人输入中收集证据，冻结为不可变快照，再异步生成报告，并用该快照校验引用。",
+          detail: "Materiality 层等待合并",
         },
         {
-          eyebrow: "更广泛的决策支持设计",
+          eyebrow: "已设计 · 集成分支",
           label: "Vantage",
-          text: "更广泛的决策支持系统设计，连接角色感知上下文、证据检索、AI 报告、人工审阅和承诺跟踪。",
-          detail: "部分集成 · 更多组件仍在规划中",
+          text: "角色感知的决策支持流水线，从公司上下文和证据检索，到人工审阅和承诺追踪。我负责设计，并协调前端与检索工作。",
+          detail: "经过测试的集成分支 · 便携演示",
         },
       ],
-      tags: ["技术设计", "RAG", "系统集成", "代码审查"],
+      tags: ["架构设计", "PostgreSQL", "Inngest", "幂等性", "代码审查"],
       sideLabel: "设计与实施",
       sideText:
-        "Vantage 的部分组件仍处于提案或部分集成阶段，完整设计尚未全部交付。",
+        "Vantage 的集成 PR 尚未合并，带身份认证的端到端验证仍在进行。",
       links: [
         {
           label: "在 GitHub 查看代码",
@@ -708,7 +796,7 @@ export const chineseContent: PortfolioContent = {
       kicker: "项目负责人 · HopHacks 2026",
       title: "为地震救援建立共享的行动态势。",
       description:
-        "AI 辅助地震响应原型，将相互矛盾的多模态报告融合为共享行动状态，协调搜索与救援，并基于真实道路网络动态调整团队路线。",
+        "AI 辅助地震响应原型，将相互矛盾的多模态报告融合为共享行动状态，协调搜索与救援，并基于真实道路网络动态调整团队路线，重要任务变更需要人工批准。",
       tags: ["AI 系统", "多模态报告", "行动协调", "路线规划"],
       sideLabel: "第一名 · Bloomberg 赛道",
       sideText: "HopHacks 2026 Bloomberg Most Philanthropic Hack 赛道第一名。",
@@ -721,8 +809,8 @@ export const chineseContent: PortfolioContent = {
     },
   },
   research: {
-    index: "03 / 研究",
-    label: "研究与论文",
+    index: "02 / 研究",
+    label: "安全研究 · AI 代码 benchmark",
     entries: [
       {
         id: "taint-analysis",
@@ -741,7 +829,7 @@ export const chineseContent: PortfolioContent = {
           },
           {
             label: "个人贡献",
-            text: "复现并评测真实 Web 应用中的 CVE 漏洞案例，协助跨运行时评测。",
+            text: "在论文的 19 个真实漏洞中复现了 4 个以上，完成完整应用级 CVE 验证，并协助在 CPython、SpiderMonkey 和 Chromium 上移植和评测引擎。",
           },
         ],
       },
@@ -749,7 +837,7 @@ export const chineseContent: PortfolioContent = {
         id: "genesis-mission",
         title: "Genesis Mission",
         role: "本科研究员 · Prof. Ziyang Li",
-        context: "研究可靠的 AI 生成科学计算软件。",
+        context: "美国能源部支持的研究，为 AI 生成的科学代码构建 benchmark。",
         dates: "2026 年 9 月 — 至今",
         links: [
           {
@@ -759,12 +847,12 @@ export const chineseContent: PortfolioContent = {
         ],
         items: [
           {
-            label: "工作负载重建",
-            text: "重建计算物理工作负载，配置 CUDA 环境，使科学计算代码可复现、可测试。",
+            label: "Benchmark",
+            text: "基于科研软件构建冻结的代码合成任务，衡量编码 Agent 能否写出可编译、数值正确、符合接口约定的代码。",
           },
           {
-            label: "数值验证",
-            text: "将 CPU/GPU 数值结果与可信参考结果进行比较，记录差异及每次验证的适用边界。",
+            label: "我的工作",
+            text: "我设计了编排流程，负责 frozen-benchmark 阶段及其独立验证，包括对照可信数值参考的远程 GPU 评测。",
           },
         ],
       },
@@ -813,11 +901,11 @@ export const chineseContent: PortfolioContent = {
       {
         label: "系统 / 研究",
         value:
-          "Linux / WSL, CUDA, SQLite, Docker, Dynamic Taint Analysis, CVE Validation",
+          "Linux / WSL, CUDA, Docker, AWS, Inngest, Dynamic Taint Analysis, CVE Validation",
       },
       {
         label: "Web / Data",
-        value: "React, Next.js, Node.js, PostgreSQL, Git, AWS",
+        value: "React, Next.js, Node.js, PostgreSQL / pgvector, SQLite, Git",
       },
     ],
   },
