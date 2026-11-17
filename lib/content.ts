@@ -408,7 +408,7 @@ export const englishContent: PortfolioContent = {
           eyebrow: "Built · core pipeline merged",
           label: "Founder Weekly Review",
           text: "Collects evidence from document versions, customer feedback, and founder input, freezes it into an immutable snapshot, generates the report asynchronously, and validates citations against that snapshot.",
-          detail: "Materiality layer pending merge",
+          detail: "Materiality layer: 70-change test fixture reduced to 22 prompt items; pending merge",
         },
         {
           eyebrow: "Designed · integration branch",
@@ -433,11 +433,11 @@ export const englishContent: PortfolioContent = {
       kicker: "Project Lead · HopHacks 2026",
       title: "A shared operational picture for earthquake response.",
       description:
-        "An AI-assisted earthquake-response prototype that fuses conflicting multimodal reports into shared operational state, coordinates search and rescue, and dynamically reroutes teams over real road networks, with human approval for mission changes.",
+        "I led a four-person team to build a working earthquake-response demo in 36 hours. It fuses conflicting reports into shared operational state and reroutes rescue teams over real road networks, with human approval for mission changes.",
       tags: ["AI systems", "multimodal reports", "coordination", "routing"],
       sideLabel: "1st place · Bloomberg track",
       sideText:
-        "First place in the Bloomberg Most Philanthropic Hack track at HopHacks 2026.",
+        "1st of 27 teams in the Bloomberg Most Philanthropic Hack track at HopHacks 2026.",
       links: [
         {
           label: "View Project & Demo",
@@ -467,7 +467,7 @@ export const englishContent: PortfolioContent = {
           },
           {
             label: "My contribution",
-            text: "Reproduced 4+ of the paper's 19 real-world vulnerabilities as full-application CVE validations, and helped port and evaluate the engine across CPython, SpiderMonkey, and Chromium.",
+            text: "Reproduced 4+ of the paper's 19 real-world vulnerabilities in full applications, tracing tainted input to DOM and code-execution sinks. Helped port and evaluate the shadow-VM engine across CPython, SpiderMonkey, and Chromium, including propagation and source-to-sink coverage limitations.",
           },
         ],
       },
@@ -491,7 +491,7 @@ export const englishContent: PortfolioContent = {
           },
           {
             label: "My work",
-            text: "I designed the orchestration and own the frozen-benchmark stage and its independent validation, including remote GPU evaluation against trusted numerical references.",
+            text: "I designed the research-software-to-benchmark pipeline and own the frozen-benchmark stage: scientific admission gates, independent validation, and remote CUDA GPU evaluation against trusted numerical references.",
           },
         ],
       },
@@ -771,7 +771,7 @@ export const chineseContent: PortfolioContent = {
           eyebrow: "已构建 · 核心流水线已合并",
           label: "Founder Weekly Review",
           text: "从文档版本、客户反馈和创始人输入中收集证据，冻结为不可变快照，再异步生成报告，并用该快照校验引用。",
-          detail: "Materiality 层等待合并",
+          detail: "Materiality 层：70 项变更测试样例压缩为 22 项提示输入；等待合并",
         },
         {
           eyebrow: "已设计 · 集成分支",
@@ -796,10 +796,10 @@ export const chineseContent: PortfolioContent = {
       kicker: "项目负责人 · HopHacks 2026",
       title: "为地震救援建立共享的行动态势。",
       description:
-        "AI 辅助地震响应原型，将相互矛盾的多模态报告融合为共享行动状态，协调搜索与救援，并基于真实道路网络动态调整团队路线，重要任务变更需要人工批准。",
+        "我带领四人团队，在 36 小时内完成可运行的地震响应演示：将相互矛盾的报告融合为共享行动状态，并基于真实道路网络动态调整救援路线，重要任务变更需要人工批准。",
       tags: ["AI 系统", "多模态报告", "行动协调", "路线规划"],
       sideLabel: "第一名 · Bloomberg 赛道",
-      sideText: "HopHacks 2026 Bloomberg Most Philanthropic Hack 赛道第一名。",
+      sideText: "HopHacks 2026 Bloomberg Most Philanthropic Hack 赛道 27 支队伍中的第一名。",
       links: [
         {
           label: "查看项目与演示",
@@ -829,7 +829,7 @@ export const chineseContent: PortfolioContent = {
           },
           {
             label: "个人贡献",
-            text: "在论文的 19 个真实漏洞中复现了 4 个以上，完成完整应用级 CVE 验证，并协助在 CPython、SpiderMonkey 和 Chromium 上移植和评测引擎。",
+            text: "在论文的 19 个真实漏洞中复现了 4 个以上，完成完整应用级 CVE 验证，追踪污点输入到 DOM 与代码执行点；协助在 CPython、SpiderMonkey 和 Chromium 上移植和评测 shadow-VM 引擎，并分析传播与 source-to-sink 覆盖的局限。",
           },
         ],
       },
@@ -852,7 +852,7 @@ export const chineseContent: PortfolioContent = {
           },
           {
             label: "我的工作",
-            text: "我设计了编排流程，负责 frozen-benchmark 阶段及其独立验证，包括对照可信数值参考的远程 GPU 评测。",
+            text: "我设计了从科研软件到 benchmark 的流程，负责 frozen-benchmark 阶段，包括科学准入门槛、独立验证，以及对照可信数值参考的远程 CUDA GPU 评测。",
           },
         ],
       },
